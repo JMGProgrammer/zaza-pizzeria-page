@@ -10,8 +10,8 @@ Este documento desglosa el plan de ejecución por sprints o iteraciones para la 
 | :--- | :--- | :--- | :--- | :--- |
 | **Iteración 0** | Documentación, Relevamiento & Arquitectura | Suite de Docs, Assets organizados y Reglas de Desarrollo | `v0.1.0` | **COMPLETADA ✅** |
 | **Iteración 1** | Inicialización del Proyecto Astro & Design System | Proyecto base con Tailwind tokens, tipografía e iconos | `v0.2.0` | **COMPLETADA ✅** |
-| **Iteración 2** | Capa de Datos & Componentes de Cabecera y Hero | Datos tipados de menú, Layout SEO, Navbar y Hero Section | `v0.3.0` | **SIGUIENTE 🎯** |
-| **Iteración 3** | Catálogo Gastronómico & Sección Delivery | MenuSection, PizzaCards interactivas e Info Operativa | `v0.4.0` | **PLANIFICADA 📋** |
+| **Iteración 2** | Capa de Datos & Componentes de Cabecera y Hero | Datos tipados de menú, Layout SEO, Navbar y Hero Section | `v0.3.0` | **COMPLETADA ✅** |
+| **Iteración 3** | Catálogo Gastronómico & Sección Delivery | MenuSection, PizzaCards interactivas e Info Operativa | `v0.4.0` | **SIGUIENTE 🎯** |
 | **Iteración 4** | Integración de Contacto WhatsApp, Footer & A11y | Botón flotante WhatsApp, Footer, microanimaciones y accesibilidad | `v0.5.0` | **PLANIFICADA 📋** |
 | **Iteración 5** | Auditoría, Optimización de Assets & Despliegue | Build de producción sin errores, Lighthouse 90+ y URL en Vercel/Netlify | `v1.0.0` (Stable) | **PLANIFICADA 📋** |
 

@@ -1,0 +1,110 @@
+---
+import { businessInfo } from '../data/businessInfo';
+import { MessageCircle, ArrowRight, Sparkles, Flame, ShieldCheck, Heart } from 'lucide-astro';
+---
+
+<section class="relative bg-zaza-wine-950 text-zaza-cream-100 overflow-hidden py-16 sm:py-24 border-b border-zaza-wine-800">
+  <!-- Fondo con textura sutil y velo borgoña -->
+  <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
+    <img 
+      src="/Assets/Backgrounds/bg-burgundy-silk-16:9.jpeg" 
+      alt="" 
+      class="w-full h-full object-cover" 
+      aria-hidden="true" 
+    />
+  </div>
+  <div class="absolute inset-0 z-0 bg-gradient-to-b from-zaza-wine-900/90 via-zaza-wine-950/95 to-zaza-wine-950 pointer-events-none"></div>
+
+  <!-- Contenido principal en contenedor centrado -->
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+      
+      <!-- Bloque de texto y propuesta de valor -->
+      <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+        
+        <!-- Badge superior con estética vintage -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zaza-wine-800/80 border border-zaza-gold-500/40 text-zaza-gold-400 text-xs sm:text-sm font-medium shadow-inner">
+          <Sparkles class="w-4 h-4 text-zaza-gold-400 shrink-0" />
+          <span>Tradición artesanal • 100% Delivery en {businessInfo.location.city}</span>
+        </div>
+
+        <!-- Título H1 principal con tipografía Playfair Display -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-zaza-cream-50 font-serif leading-[1.1]">
+          Pizzas hechas con pasión y <span class="text-zaza-gold-400 italic">alma casera.</span>
+        </h1>
+
+        <!-- Párrafo descriptivo -->
+        <p class="text-base sm:text-xl text-zaza-cream-200/90 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+          {businessInfo.proposition} Fermentación lenta, abundante muzzarella y recetas seleccionadas llevadas calientes y crocantes directo a tu mesa.
+        </p>
+
+        <!-- Botones CTA principales -->
+        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+          <a
+            href={businessInfo.contact.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-zaza-wine-700 hover:bg-zaza-wine-600 text-zaza-cream-50 font-bold text-base border border-zaza-gold-500/50 shadow-xl hover:shadow-zaza-wine-700/60 hover:-translate-y-0.5 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-zaza-gold-400"
+          >
+            <MessageCircle class="w-5 h-5 text-emerald-400 fill-emerald-400" />
+            <span>Hacer Pedido por WhatsApp</span>
+          </a>
+
+          <a
+            href="#menu"
+            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-zaza-cream-100/10 hover:bg-zaza-cream-100/20 text-zaza-cream-100 font-semibold text-base border border-zaza-cream-300/30 backdrop-blur-sm transition-all hover:border-zaza-gold-400/50"
+          >
+            <span>Ver Menú Completo</span>
+            <ArrowRight class="w-4 h-4" />
+          </a>
+        </div>
+
+        <!-- Indicadores de confianza -->
+        <div class="pt-6 grid grid-cols-3 gap-4 border-t border-zaza-wine-800/80 text-xs sm:text-sm text-zaza-cream-300">
+          <div class="flex items-center gap-2 justify-center lg:justify-start">
+            <Flame class="w-4 h-4 text-zaza-gold-400 shrink-0" />
+            <span>Masa Casera</span>
+          </div>
+          <div class="flex items-center gap-2 justify-center lg:justify-start">
+            <Heart class="w-4 h-4 text-zaza-gold-400 shrink-0" />
+            <span>Cultura Mixta</span>
+          </div>
+          <div class="flex items-center gap-2 justify-center lg:justify-start">
+            <ShieldCheck class="w-4 h-4 text-zaza-gold-400 shrink-0" />
+            <span>Entrega Rápida</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Imagen destacada / Composición publicitaria vintage -->
+      <div class="lg:col-span-5 relative flex justify-center">
+        <!-- Resplandor posterior dorado -->
+        <div class="absolute -inset-4 bg-zaza-gold-500/10 rounded-3xl blur-2xl pointer-events-none"></div>
+
+        <div class="relative w-full max-w-md rounded-2xl overflow-hidden border-2 border-zaza-gold-500/40 shadow-2xl bg-zaza-wine-900 group">
+          <img 
+            src="/Assets/Presentation/capresse-luxury-presentation.jpeg" 
+            alt="Pizza artesanal Capresse de ZAZA" 
+            class="w-full h-auto object-cover aspect-[4/5] group-hover:scale-105 transition-transform duration-700"
+            loading="eager"
+            fetchpriority="high"
+            width="400"
+            height="500"
+          />
+          <!-- Badge flotante sobre la foto -->
+          <div class="absolute bottom-4 left-4 right-4 bg-zaza-wine-950/90 backdrop-blur-md p-3.5 rounded-xl border border-zaza-gold-500/40 text-left">
+            <div class="flex items-center justify-between">
+              <div>
+                <p class="text-xs uppercase tracking-wider text-zaza-gold-400 font-bold">Pizza de la Semana</p>
+                <p class="font-serif text-lg font-bold text-zaza-cream-50">Capresse Artesanal</p>
+              </div>
+              <span class="text-lg font-extrabold text-zaza-gold-400">$ 450</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

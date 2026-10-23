@@ -1,15 +1,54 @@
 ---
 import '../styles/global.css';
+import { businessInfo } from '../data/businessInfo';
 
 interface Props {
   title?: string;
   description?: string;
+  ogImage?: string;
 }
 
 const {
-  title = "ZAZA Pizzería Artesanal | Delivery en Rosario, Colonia",
-  description = "Pizzería artesanal ZAZA en Rosario, Colonia. Masa casera, ingredientes seleccionados y recetas clásicas y especiales. Pedí tu delivery directo por WhatsApp de 20:00 a 01:00 hs."
+  title = `${businessInfo.name} Pizzería Artesanal | Delivery en Rosario, Colonia`,
+  description = `${businessInfo.name} en Rosario, Colonia. ${businessInfo.tagline} Pizzas clásicas y especiales de masa casera. Pedí tu delivery directo al WhatsApp.`,
+  ogImage = '/Assets/Presentation/capresse-luxury-presentation.jpeg'
 } = Astro.props;
+
+const siteUrl = 'https://pizzeriazaza.com.uy'; // Dominio propuesto según docs
+
+const schemaData = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": `${businessInfo.name} Pizzería`,
+  "description": businessInfo.tagline,
+  "servesCuisine": "Pizza artesanal",
+  "telephone": businessInfo.contact.phone,
+  "url": siteUrl,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": businessInfo.location.city,
+    "addressRegion": businessInfo.location.department,
+    "addressCountry": "UY"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": businessInfo.schedule.opens,
+      "closes": businessInfo.schedule.closes
+    }
+  ],
+  "paymentAccepted": businessInfo.delivery.paymentMethods.join(", "),
+  "priceRange": "$$"
+};
 ---
 
 <!doctype html>
@@ -34,8 +73,27 @@ const {
     <meta name="description" content={description} />
     <meta name="robots" content="index, follow" />
     <meta name="theme-color" content="#5a131a" />
+    <link rel="canonical" href={siteUrl} />
+
+    <!-- Open Graph / Facebook / WhatsApp Preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content="es_UY" />
+    <meta property="og:site_name" content={businessInfo.name} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Schema.org JSON-LD para SEO Gastronómico Local -->
+    <script type="application/ld+json" set:html={JSON.stringify(schemaData)} />
   </head>
-  <body class="min-h-screen bg-zaza-cream-100 text-zaza-dark antialiased selection:bg-zaza-wine-700 selection:text-zaza-cream-50">
+  <body class="min-h-screen bg-zaza-cream-100 text-zaza-dark antialiased selection:bg-zaza-wine-700 selection:text-zaza-cream-50 flex flex-col">
     <slot />
   </body>
 </html>

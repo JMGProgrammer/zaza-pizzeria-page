@@ -6,6 +6,21 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [0.3.0] - 2026-10-23
+
+### Cierre de Iteración 2 (IT-2) — Capa de Datos Estáticos, Layout Base, Navbar y Hero
+- **Tag Git:** `v0.3.0`
+- **Añadido:**
+  - Capa de tipado TypeScript en `src/types/index.ts` (`MenuItem`, `ProductCategory`, `BusinessDetails`, `BusinessSchedule`).
+  - Base de datos estática tipada en `src/data/businessInfo.ts` con todos los datos confirmados del comercio (Rosario, Colonia, atención de lunes a domingo 20:00 a 01:00 hs, WhatsApp directo y redes).
+  - Catálogo tipado en `src/data/menu.ts` con todas las pizzas clásicas, especiales, acompañamientos y bebidas con sus respectivos precios en pesos uruguayos e ingredientes.
+  - Actualización de `src/layouts/Layout.astro` incorporando marcado estructurado Schema.org JSON-LD para restaurantes, Open Graph tags para WhatsApp y Twitter cards.
+  - Componente de cabecera `src/components/Navbar.astro` con barra superior de avisos, logotipo optimizado, navegación ancla y botón rápido de pedidos a WhatsApp.
+  - Componente principal `src/components/Hero.astro` con propuesta de valor artesanal, estética visual de hotel vintage/años 70, llamados a la acción y card destacada de pizza.
+  - Actualización de `src/pages/index.astro` integrando Navbar, Hero, grid de pizzas destacadas y panel informativo de horarios, cobertura y medios de pago.
+
+---
+
 ## [0.2.0] - 2026-10-23
 
 ### Cierre de Iteración 1 (IT-1) — Inicialización de Astro & Configuración del Design System
