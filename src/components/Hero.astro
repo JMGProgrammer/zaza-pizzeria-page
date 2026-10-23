@@ -1,110 +1,347 @@
 ---
-import { businessInfo } from '../data/businessInfo';
-import { MessageCircle, ArrowRight, Sparkles, Flame, ShieldCheck, Heart } from 'lucide-astro';
+import { Image } from 'astro:assets';
+import backdrop from '../../Assets/hero-para-pngs.png';
+import tray from '../../Assets/Pngs/bandejas/bandeja-dorada-abierta.png';
+import capresse from '../../Assets/Pngs/pizzas/capresse-lateral-view.png';
+import margarita from '../../Assets/Pngs/pizzas/margarita-lateral-view.png';
+import cheeses from '../../Assets/Pngs/pizzas/4-quesos-lateral-view.png';
+import piZaza from '../../Assets/Pngs/pizzas/pi-zaza-lateral-view.png';
+import { menuItems } from '../data/menu';
+import { whatsappLink } from '../data/businessInfo';
+import { ChevronLeft, ChevronRight, ArrowUpRight } from 'lucide-astro';
+
+const selection = [
+  { id: 'capresse', image: capresse, top: '28%' },
+  { id: 'pi-zaza', image: piZaza, top: '28%' },
+  { id: 'cuatro-quesos', image: cheeses, top: '27.8%' },
+  { id: 'margarita', image: margarita, top: '26.8%' },
+].map(photo => ({ ...photo, item: menuItems.find(item => item.id === photo.id)! }));
 ---
+<section id="inicio" class="pizza-theatre bg-zaza-wine-900 text-zaza-cream-100" data-pizza-hero aria-label="Pizzas de ZAZA" aria-roledescription="carrusel">
+  <header class="theatre-heading px-6 pt-6 text-center">
+    <p class="eyebrow text-zaza-cream-300">ZAZA · Pizzería artesanal en Rosario</p>
+    <h1 class="mt-3 text-4xl leading-tight md:text-5xl">El sabor entra en escena.</h1>
+  </header>
 
-<section class="relative bg-zaza-wine-950 text-zaza-cream-100 overflow-hidden py-16 sm:py-24 border-b border-zaza-wine-800">
-  <!-- Fondo con textura sutil y velo borgoña -->
-  <div class="absolute inset-0 z-0 opacity-20 pointer-events-none">
-    <img 
-      src="/Assets/Backgrounds/bg-burgundy-silk-16:9.jpeg" 
-      alt="" 
-      class="w-full h-full object-cover" 
-      aria-hidden="true" 
-    />
-  </div>
-  <div class="absolute inset-0 z-0 bg-gradient-to-b from-zaza-wine-900/90 via-zaza-wine-950/95 to-zaza-wine-950 pointer-events-none"></div>
-
-  <!-- Contenido principal en contenedor centrado -->
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+  <div class="scene-window">
+    <div class="scene">
+      <Image
+        src={backdrop}
+        alt="Escenario teatral con telón rojo y mesa dorada"
+        widths={[850, 1200, 1672, 2048, 2560]}
+        sizes="100vw"
+        quality={80}
+        class="scene-background"
+        loading="eager"
+        fetchpriority="high"
+      />
       
-      <!-- Bloque de texto y propuesta de valor -->
-      <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
-        
-        <!-- Badge superior con estética vintage -->
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-zaza-wine-800/80 border border-zaza-gold-500/40 text-zaza-gold-400 text-xs sm:text-sm font-medium shadow-inner">
-          <Sparkles class="w-4 h-4 text-zaza-gold-400 shrink-0" />
-          <span>Tradición artesanal • 100% Delivery en {businessInfo.location.city}</span>
-        </div>
+      <!-- Botones laterales para cambio rápido a los costados de la bandeja -->
+      <button
+        type="button"
+        class="tray-nav-button tray-nav-prev"
+        data-previous
+        aria-label="Pizza anterior"
+      >
+        <ChevronLeft size={30} aria-hidden="true" />
+      </button>
 
-        <!-- Título H1 principal con tipografía Playfair Display -->
-        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-zaza-cream-50 font-serif leading-[1.1]">
-          Pizzas hechas con pasión y <span class="text-zaza-gold-400 italic">alma casera.</span>
-        </h1>
-
-        <!-- Párrafo descriptivo -->
-        <p class="text-base sm:text-xl text-zaza-cream-200/90 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
-          {businessInfo.proposition} Fermentación lenta, abundante muzzarella y recetas seleccionadas llevadas calientes y crocantes directo a tu mesa.
-        </p>
-
-        <!-- Botones CTA principales -->
-        <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
-          <a
-            href={businessInfo.contact.whatsappUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-zaza-wine-700 hover:bg-zaza-wine-600 text-zaza-cream-50 font-bold text-base border border-zaza-gold-500/50 shadow-xl hover:shadow-zaza-wine-700/60 hover:-translate-y-0.5 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-zaza-gold-400"
-          >
-            <MessageCircle class="w-5 h-5 text-emerald-400 fill-emerald-400" />
-            <span>Hacer Pedido por WhatsApp</span>
-          </a>
-
-          <a
-            href="#menu"
-            class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-zaza-cream-100/10 hover:bg-zaza-cream-100/20 text-zaza-cream-100 font-semibold text-base border border-zaza-cream-300/30 backdrop-blur-sm transition-all hover:border-zaza-gold-400/50"
-          >
-            <span>Ver Menú Completo</span>
-            <ArrowRight class="w-4 h-4" />
-          </a>
-        </div>
-
-        <!-- Indicadores de confianza -->
-        <div class="pt-6 grid grid-cols-3 gap-4 border-t border-zaza-wine-800/80 text-xs sm:text-sm text-zaza-cream-300">
-          <div class="flex items-center gap-2 justify-center lg:justify-start">
-            <Flame class="w-4 h-4 text-zaza-gold-400 shrink-0" />
-            <span>Masa Casera</span>
-          </div>
-          <div class="flex items-center gap-2 justify-center lg:justify-start">
-            <Heart class="w-4 h-4 text-zaza-gold-400 shrink-0" />
-            <span>Cultura Mixta</span>
-          </div>
-          <div class="flex items-center gap-2 justify-center lg:justify-start">
-            <ShieldCheck class="w-4 h-4 text-zaza-gold-400 shrink-0" />
-            <span>Entrega Rápida</span>
-          </div>
-        </div>
-
+      <div class="serving-tray" aria-hidden="true">
+        <Image src={tray} alt="" widths={[480, 720]} sizes="(max-width: 850px) 357px, 42vw" class="tray-base" loading="eager" />
       </div>
 
-      <!-- Imagen destacada / Composición publicitaria vintage -->
-      <div class="lg:col-span-5 relative flex justify-center">
-        <!-- Resplandor posterior dorado -->
-        <div class="absolute -inset-4 bg-zaza-gold-500/10 rounded-3xl blur-2xl pointer-events-none"></div>
-
-        <div class="relative w-full max-w-md rounded-2xl overflow-hidden border-2 border-zaza-gold-500/40 shadow-2xl bg-zaza-wine-900 group">
-          <img 
-            src="/Assets/Presentation/capresse-luxury-presentation.jpeg" 
-            alt="Pizza artesanal Capresse de ZAZA" 
-            class="w-full h-auto object-cover aspect-[4/5] group-hover:scale-105 transition-transform duration-700"
-            loading="eager"
-            fetchpriority="high"
-            width="400"
-            height="500"
-          />
-          <!-- Badge flotante sobre la foto -->
-          <div class="absolute bottom-4 left-4 right-4 bg-zaza-wine-950/90 backdrop-blur-md p-3.5 rounded-xl border border-zaza-gold-500/40 text-left">
-            <div class="flex items-center justify-between">
-              <div>
-                <p class="text-xs uppercase tracking-wider text-zaza-gold-400 font-bold">Pizza de la Semana</p>
-                <p class="font-serif text-lg font-bold text-zaza-cream-50">Capresse Artesanal</p>
-              </div>
-              <span class="text-lg font-extrabold text-zaza-gold-400">$ 450</span>
-            </div>
+      <div id="hero-pizzas">
+        {selection.map(({ item, image, top }, index) => (
+          <div class="pizza-layer" style={`--pizza-top: ${top}`} data-pizza-slide hidden={index !== 0} role="group" aria-roledescription="diapositiva" aria-label={`${index + 1} de ${selection.length}: ${item.name}`}>
+            <Image
+              src={image}
+              alt={`Pizza ${item.name} sobre la bandeja`}
+              widths={[420, 640]}
+              sizes="(max-width: 850px) 238px, 28vw"
+              quality={85}
+              loading={index === 0 ? 'eager' : 'lazy'}
+            />
           </div>
-        </div>
+        ))}
       </div>
 
+      <div class="serving-lid" aria-hidden="true">
+        <Image src={tray} alt="" widths={[480, 720]} sizes="(max-width: 850px) 357px, 42vw" class="tray-lid" loading="eager" />
+      </div>
+
+      <button class="reveal-target" type="button" aria-expanded="true" aria-controls="hero-pizzas" aria-label="Abrir o cerrar la tapa" aria-describedby="reveal-hint" data-reveal hidden></button>
+
+      <button
+        type="button"
+        class="tray-nav-button tray-nav-next"
+        data-next
+        aria-label="Pizza siguiente"
+      >
+        <ChevronRight size={30} aria-hidden="true" />
+      </button>
     </div>
   </div>
+
+  <div class="relative mx-auto max-w-2xl px-6 pb-10 text-center">
+    <p class="mb-4 text-sm text-zaza-cream-200" id="reveal-hint">Masa casera. Buenos ingredientes. Elegí tu favorita.</p>
+    <div class="carousel-controls" data-carousel-controls hidden>
+      <button type="button" class="carousel-arrow" data-previous aria-label="Pizza anterior"><ChevronLeft size={24} /></button>
+      <div class="flex flex-wrap justify-center gap-1.5" aria-label="Elegir pizza">
+        {selection.map(({ item }, index) => (
+          <button type="button" class="pizza-selector" data-select={index} aria-label={`Mostrar ${item.name}`} aria-pressed={index === 0}>
+            {String(index + 1).padStart(2, '0')}
+          </button>
+        ))}
+      </div>
+      <button type="button" class="carousel-arrow" data-next aria-label="Pizza siguiente"><ChevronRight size={24} /></button>
+    </div>
+    <div aria-live="polite" aria-atomic="true">
+      {selection.map(({ item }, index) => (
+        <div data-pizza-details hidden={index !== 0}>
+          <div class="mt-4 flex items-baseline justify-center gap-4">
+            <h2 class="text-3xl md:text-4xl">{item.name}</h2>
+            <span class="text-xl text-zaza-cream-200">$ {item.price} <span class="text-xs">UYU</span></span>
+          </div>
+          <p class="mx-auto mt-3 max-w-lg text-sm leading-6 text-zaza-cream-200">{item.description}</p>
+          <a class="button mt-5 bg-zaza-cream-100 text-zaza-wine-800 hover:bg-zaza-cream-200" href={whatsappLink(`¡Hola ZAZA! Quisiera pedir ${item.name}.`)} target="_blank" rel="noopener noreferrer">
+            Pedir {item.name}<ArrowUpRight size={18} aria-hidden="true" />
+          </a>
+        </div>
+      ))}
+    </div>
+    <a class="mt-5 inline-block px-4 py-3 text-sm underline underline-offset-8" href="#menu">Ver toda la carta</a>
+  </div>
 </section>
+
+<style>
+  /* Escena de teatro full-width responsiva */
+  .pizza-theatre { position: relative; width: 100%; overflow: hidden; }
+  .theatre-heading { position: relative; z-index: 5; padding-bottom: 1rem; }
+  @media (min-width: 850px) {
+    .theatre-heading {
+      position: absolute;
+      top: 1rem;
+      left: 0;
+      width: 100%;
+      text-shadow: 0 2px 14px rgba(61, 12, 17, 0.85);
+    }
+  }
+  .scene-window {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  }
+  .scene {
+    position: relative;
+    width: 100%;
+    min-width: 850px;
+    aspect-ratio: 1672 / 941;
+    left: 50%;
+    transform: translateX(-50%);
+    isolation: isolate;
+  }
+  .scene-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    inset: 0;
+    object-fit: cover;
+  }
+
+  /* Bandeja y tapa con coordenadas de escala idénticas */
+  .serving-tray, .serving-lid {
+    position: absolute;
+    width: 42%;
+    aspect-ratio: 1;
+    left: 29%;
+    top: 8.5%;
+    pointer-events: none;
+  }
+  .serving-tray { z-index: 1; }
+  .tray-base { width: 100%; height: 100%; clip-path: inset(62% 0 0 0); }
+  .serving-lid {
+    z-index: 3;
+    transform: translateY(-6%);
+    transition: transform 650ms cubic-bezier(.22, .68, .2, 1);
+  }
+  .tray-lid { width: 100%; height: 100%; clip-path: inset(0 0 42% 0); }
+
+  /* Capa de la pizza sobre la bandeja */
+  .pizza-layer {
+    position: absolute;
+    width: 28%;
+    left: 36%;
+    top: var(--pizza-top);
+    z-index: 2;
+    pointer-events: none;
+  }
+  [data-ready][data-open="false"] .pizza-layer { visibility: hidden; }
+  .pizza-layer img { width: 100%; height: auto; }
+
+  /* Área clicable de la campana */
+  .reveal-target {
+    position: absolute;
+    left: 33%;
+    top: 17%;
+    width: 34%;
+    height: 50%;
+    z-index: 4;
+    border-radius: 45% 45% 10% 10%;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+  }
+  [data-ready][data-open="false"] .serving-lid { transform: translateY(17%); }
+
+  /* Botones de navegación a los costados de la bandeja */
+  .tray-nav-button {
+    position: absolute;
+    top: 36%;
+    z-index: 15;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px;
+    height: 52px;
+    border-radius: 9999px;
+    background: rgba(61, 12, 17, 0.76);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1.5px solid rgba(228, 213, 183, 0.45);
+    color: var(--color-zaza-cream-100);
+    cursor: pointer;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.18);
+    transition:
+      transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      background-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      border-color 220ms cubic-bezier(0.16, 1, 0.3, 1),
+      box-shadow 220ms cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .tray-nav-prev {
+    left: 21.5%;
+    transform: translate(-50%, -50%);
+  }
+  .tray-nav-next {
+    left: 78.5%;
+    transform: translate(-50%, -50%);
+  }
+  .tray-nav-button:hover,
+  .tray-nav-button:focus-visible {
+    background: rgba(123, 27, 36, 0.95);
+    border-color: rgba(228, 213, 183, 0.95);
+    color: #fff;
+    transform: translate(-50%, -50%) scale(1.12);
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7), 0 0 16px rgba(229, 169, 59, 0.35);
+  }
+  .tray-nav-button:active {
+    transform: translate(-50%, -50%) scale(0.94);
+  }
+
+  /* Controles inferiores del carrusel */
+  .carousel-controls { align-items: center; justify-content: center; gap: 1.5rem; }
+  .carousel-controls:not([hidden]) { display: flex; }
+  .carousel-arrow, .pizza-selector {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    min-height: 44px;
+    border: 1px solid #e4d5b755;
+    cursor: pointer;
+    transition: background-color 150ms;
+  }
+  .pizza-selector { border: 0; border-bottom: 2px solid transparent; font-size: .85rem; font-weight: 500; }
+  .pizza-selector[aria-pressed="true"] { border-color: var(--color-zaza-cream-100); background: #faf6ee14; font-weight: 700; }
+  .carousel-arrow:hover, .pizza-selector:hover { background: #faf6ee22; }
+  button:focus-visible { outline: 2px solid var(--color-zaza-cream-100); outline-offset: 4px; }
+  @media (prefers-reduced-motion: reduce) {
+    .serving-lid, .tray-nav-button { transition: none; }
+  }
+</style>
+
+<script>
+  const hero = document.querySelector<HTMLElement>('[data-pizza-hero]');
+  if (hero) {
+    const slides = [...hero.querySelectorAll<HTMLElement>('[data-pizza-slide]')];
+    const details = [...hero.querySelectorAll<HTMLElement>('[data-pizza-details]')];
+    const selectors = [...hero.querySelectorAll<HTMLButtonElement>('[data-select]')];
+    const reveal = hero.querySelector<HTMLButtonElement>('[data-reveal]')!;
+    const controls = hero.querySelector<HTMLElement>('[data-carousel-controls]')!;
+    const hint = hero.querySelector<HTMLElement>('#reveal-hint')!;
+    let current = 0;
+    let pinned = false;
+    let hovering = false;
+    let focused = false;
+
+    const updateReveal = () => {
+      const open = pinned || hovering || focused;
+      hero.dataset.open = String(open);
+      reveal.setAttribute('aria-expanded', String(open));
+      const targetLabel = selectors[current]?.getAttribute('aria-label')?.replace('Mostrar ', '') || 'la pizza';
+      reveal.setAttribute('aria-label', `${open ? 'Cerrar' : 'Abrir'} la tapa de ${targetLabel}`);
+    };
+
+    const show = (index: number, autoOpen = true) => {
+      current = (index + slides.length) % slides.length;
+      slides.forEach((slide, i) => { slide.hidden = i !== current; });
+      details.forEach((detail, i) => { detail.hidden = i !== current; });
+      selectors.forEach((button, i) => button.setAttribute('aria-pressed', String(i === current)));
+      if (autoOpen) {
+        pinned = true;
+      }
+      updateReveal();
+    };
+
+    reveal.hidden = false;
+    controls.hidden = false;
+    hero.dataset.ready = '';
+
+    const canHover = typeof window !== 'undefined' && typeof window.matchMedia === 'function' && window.matchMedia('(hover: hover)').matches;
+    hint.textContent = canHover
+      ? 'Pasá el mouse por la campana o usá los botones laterales para descubrir cada pizza.'
+      : 'Tocá la campana o los botones laterales para descubrir cada pizza.';
+    updateReveal();
+
+    reveal.addEventListener('pointerenter', event => {
+      if (event.pointerType === 'mouse') {
+        hovering = true;
+        updateReveal();
+      }
+    });
+    reveal.addEventListener('pointerleave', () => {
+      hovering = false;
+      updateReveal();
+    });
+    reveal.addEventListener('focus', () => {
+      if (reveal.matches(':focus-visible')) {
+        focused = true;
+        updateReveal();
+      }
+    });
+    reveal.addEventListener('blur', () => {
+      focused = false;
+      updateReveal();
+    });
+    reveal.addEventListener('click', () => {
+      pinned = !pinned;
+      focused = false;
+      updateReveal();
+    });
+
+    hero.querySelectorAll('[data-previous]').forEach(btn => btn.addEventListener('click', () => show(current - 1)));
+    hero.querySelectorAll('[data-next]').forEach(btn => btn.addEventListener('click', () => show(current + 1)));
+    selectors.forEach((button, index) => button.addEventListener('click', () => show(index)));
+
+    hero.addEventListener('keydown', event => {
+      if (!(event.target instanceof HTMLButtonElement)) return;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') {
+        event.preventDefault();
+        show(current + (event.key === 'ArrowRight' ? 1 : -1));
+      }
+      if (event.key === 'Escape') {
+        pinned = hovering = focused = false;
+        updateReveal();
+      }
+    });
+  }
+</script>

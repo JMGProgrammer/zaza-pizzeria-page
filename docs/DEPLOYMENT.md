@@ -30,7 +30,7 @@ A nivel de configuración en el panel de Vercel o Netlify:
 | **Root Directory** | `./` |
 | **Build Command** | `npm run build` |
 | **Output Directory** | `dist` |
-| **Node.js Version** | `20.x` |
+| **Node.js Version** | `24.x` (mínimo del proyecto: 22.23.4) |
 
 ---
 
@@ -40,7 +40,7 @@ En la fase inicial de preview informativa, el sitio no requiere secretos de back
 
 ```bash
 # .env.example (Propuesta)
-PUBLIC_SITE_URL="https://pizzeriazaza.com.uy"
+PUBLIC_SITE_URL="https://URL-REAL-DEL-PREVIEW"
 PUBLIC_WHATSAPP_NUMBER="59891214087"
 PUBLIC_WHATSAPP_DEFAULT_MSG="Hola ZAZA! Quisiera consultar por el menú / realizar un pedido."
 PUBLIC_INSTAGRAM_URL="https://www.instagram.com/lapizzeriazaza/"
@@ -68,3 +68,7 @@ Antes de compartir el enlace público con clientes o promocionarlo en redes:
 - [ ] **Prueba de Responsive en Celulares Reales:** Probar en al menos un dispositivo Android y un iPhone para verificar que no haya desbordamiento horizontal ni tipografías ilegibles.
 - [ ] **Lighthouse Audit:** Ejecutar una auditoría de rendimiento en Google Chrome DevTools comprobando un puntaje mínimo de 90 en Performance y SEO.
 - [ ] **Favicon y Metadatos:** Verificar que el icono de pestaña y la tarjeta de previsualización (Open Graph) en WhatsApp muestren el isotipo oficial de ZAZA.
+
+## Configuración efectiva
+
+`astro.config.mjs` lee `PUBLIC_SITE_URL` durante el build. Al definir una URL real se generan canonical y URLs absolutas de Open Graph. Sin ella no se inventa un dominio. Ejecutar `npm run check` y `npm run build`; publicar `dist/`. No hay proyecto de hosting enlazado todavía.

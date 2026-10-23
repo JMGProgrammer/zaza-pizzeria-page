@@ -6,12 +6,12 @@ Este documento detalla el estado actual de avance del proyecto, los hitos inmedi
 
 ## 1. Estado Actual del Repositorio
 
-- **Fase actual:** Hito 1 completado — Documentación, Relevamiento y Preparación de Assets.
+- **Fase actual:** Hito 3 implementado; validación visual y auditoría final en curso.
 - **Activos recopilados:**
   - Ficha de relevamiento de negocio ([docs/BUSINESS-INFO.md](BUSINESS-INFO.md)).
   - Identidad gráfica, logotipos, fotos de platos y texturas en `Assets/`.
   - Definición completa del stack técnico, alcance, diseño y guías editoriales en `docs/`.
-- **Pendiente inmediato:** Inicialización del proyecto frontend en Astro y desarrollo de la interfaz de la web preview.
+- **Pendiente inmediato:** completar accesibilidad, auditoría Lighthouse y publicación del preview.
 
 ---
 
@@ -30,15 +30,16 @@ Este documento detalla el estado actual de avance del proyecto, los hitos inmedi
 - [x] Configuración de tipografías Google Fonts (Playfair Display para títulos y Plus Jakarta Sans para texto).
 - [x] Maquetación del layout base (`src/layouts/Layout.astro`) con metadatos SEO.
 
-### Hito 3: Desarrollo de Componentes y Landing Page (SIGUIENTE 🎯)
-- [ ] Componente `Navbar.astro` con logo, navegación ancla y botón rápido de WhatsApp.
-- [ ] Componente `Hero.astro` con propuesta de valor, estética vintage de impacto y llamados a la acción.
-- [ ] Componente `MenuSection.astro` y `PizzaCard.astro` con visualización categorizada (Clásicas, Especiales, Acompañamientos, Bebidas).
-- [ ] Componente `DeliveryInfo.astro` para zonas de entrega, horarios de atención y badges de medios de pago.
-- [ ] Componente `Footer.astro` y botón flotante de WhatsApp.
+### Hito 3: Desarrollo de Componentes y Landing Page (IMPLEMENTADO)
+- [x] Componente `Navbar.astro` con logo, navegación ancla y botón rápido de WhatsApp.
+- [x] Componente `Hero.astro` con propuesta de valor, estética vintage de impacto y llamados a la acción.
+- [x] Componente `MenuSection.astro` y `PizzaCard.astro` con visualización categorizada (Clásicas, Especiales, Acompañamientos, Bebidas).
+- [x] Componente `DeliveryInfo.astro` para zonas de entrega, horarios de atención y badges de medios de pago.
+- [x] Componente `Footer.astro` con contactos.
+- [x] Botón fijo de WhatsApp, logo tipográfico y horario contextual (iteración 4).
 
 ### Hito 4: Verificación, Auditoría y Despliegue del Preview (PRÓXIMO 🎯)
-- [ ] Optimización de imágenes (`<Image />` de Astro en WebP/AVIF).
+- [x] Optimización de imágenes (`<Image />` de Astro en WebP/AVIF).
 - [ ] Verificación de todos los enlaces salientes (WhatsApp con texto automático, Instagram).
 - [ ] Auditoría de accesibilidad, responsive y Core Web Vitals (Lighthouse >= 90).
 - [ ] Despliegue del preview en Vercel o Netlify para revisión con los dueños de ZAZA.
@@ -57,3 +58,15 @@ Las siguientes iniciativas son ideas y propuestas de evolución tecnológica que
    - Integración con Sanity o Decap CMS para que el equipo de ZAZA pueda actualizar precios, agregar fotos o activar promociones sin tocar código.
 4. **Pasarela de Pago Online Integrada:**
    - En caso de escalar a un modelo de pedidos automatizados, evaluación de integración con Checkout de Mercado Pago Uruguay.
+
+## Revisión visual del 23 de octubre de 2026
+
+Portada con afiche Capresse completo y telón, fotos de las cuatro pizzas disponibles, carta de 13 productos y bloque de marca con bandeja. Se eliminaron afirmaciones no confirmadas y se resolvieron las anclas ausentes. Componentes nuevos: `MenuSection.astro`, `PizzaCard.astro`, `DeliveryInfo.astro` y `Footer.astro` en `src/components/`. La fuente comercial continúa siendo [BUSINESS-INFO.md](BUSINESS-INFO.md).
+
+### Continuación de iteración 4
+
+Añadidos `Wordmark.astro`, `WhatsAppButton.astro`, `ServiceHours.astro`, `src/utils/schedule.ts` y fuentes locales. Marca tipográfica autorizada por el usuario; [criterio visual](DESIGN-SYSTEM.md).
+
+## Hero interactivo sobre mesa
+
+`src/components/Hero.astro` reemplaza la portada anterior por la escena `Assets/hero-para-pngs.png`, la bandeja transparente de `Assets/Pngs/bandejas/` y cuatro pizzas de `Assets/Pngs/pizzas/`. La tapa y el plato se separan visualmente con CSS sobre el mismo PNG, sin alterar originales. Carrusel manual con botones, teclado y apertura por hover o toque; sin reproducción automática.

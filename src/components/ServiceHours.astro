@@ -1,0 +1,18 @@
+---
+import { businessInfo } from '../data/businessInfo';
+---
+<p data-service-hours data-opens={businessInfo.schedule.opens} data-closes={businessInfo.schedule.closes} class="mt-3 text-sm leading-6 text-zaza-muted" role="status">Horario de Uruguay. Confirmá tu pedido por WhatsApp.</p>
+<script>
+  import { isWithinServiceHours } from '../utils/schedule';
+  function updateHours() {
+    document.querySelectorAll<HTMLElement>('[data-service-hours]').forEach(element => {
+      const open = isWithinServiceHours(new Date(), element.dataset.opens!, element.dataset.closes!);
+      element.textContent = open
+        ? 'Dentro del horario habitual. Confirmá disponibilidad por WhatsApp.'
+        : 'Fuera del horario habitual. Tomamos pedidos de 20:00 a 01:00 hs (Uruguay).';
+    });
+  }
+  updateHours();
+  setInterval(updateHours, 60_000);
+  document.addEventListener('visibilitychange', () => { if (!document.hidden) updateHours(); });
+</script>

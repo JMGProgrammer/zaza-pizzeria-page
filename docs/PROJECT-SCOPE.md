@@ -55,7 +55,7 @@ Para evitar desvíos en el alcance, las siguientes funcionalidades quedan expres
 ## 4. Limitaciones del Preview
 
 - **Carácter Provisional:** Los precios y detalles no confirmados oficialmente por los propietarios se presentarán con indicadores de valor estimado o requerirán validación final en el chat de WhatsApp.
-- **Dirección Física:** La dirección exacta del local/cocina se mantiene como `Pendiente de confirmación` hasta que los propietarios aprueben su difusión pública.
+- **Dirección Física:** No se publica. El negocio confirmó una modalidad 100% delivery, sin atención presencial ni retiro en cocina.
 - **Disponibilidad de Stock:** El sitio no refleja stock en tiempo real; la confirmación de disponibilidad ocurre al recibir el mensaje en WhatsApp.
 
 ---

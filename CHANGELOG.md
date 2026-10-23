@@ -6,6 +6,16 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [Sin publicar]
+
+### Iteraciones 3 y 4 implementadas; Iteración 5 en auditoría
+
+- Catálogo completo de 13 productos, carta oficial, cuatro fotografías optimizadas y consultas por producto a WhatsApp.
+- Información operativa de delivery, medios de pago, horario contextual de Uruguay, footer y contacto persistente.
+- Fuentes locales con licencia, SEO configurable mediante `PUBLIC_SITE_URL`, navegación por teclado y preferencias de movimiento reducido.
+- Nueva prueba de hero con escena teatral, campana interactiva y carrusel manual de cuatro pizzas, con fallback funcional sin JavaScript.
+- Pendiente antes de `v1.0.0`: aprobación visual, Lighthouse de producción, pruebas en dispositivos reales y despliegue con URL pública.
+
 ## [0.3.0] - 2026-10-23
 
 ### Cierre de Iteración 2 (IT-2) — Capa de Datos Estáticos, Layout Base, Navbar y Hero

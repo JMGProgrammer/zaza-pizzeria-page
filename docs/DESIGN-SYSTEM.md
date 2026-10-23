@@ -110,3 +110,15 @@ colors: {
   - El texto negro cálido (`#1C1917`) sobre crema (`#FAF6EE`) proporciona legibilidad óptima.
 - **Imágenes:** Todo elemento `<img>` debe contar con un atributo `alt` descriptivo (ej.: *"Pizza Capresse artesanal con tomates y albahaca fresca"*). No utilizar textos vacíos salvo en elementos puramente decorativos (`alt=""`).
 - **Navegación por Teclado:** Estados de `:focus-visible` claramente perceptibles mediante anillos de enfoque de contraste adecuado.
+
+## Aplicación tipográfica (23 de octubre de 2026)
+
+El usuario autorizó sustituir el JPEG del logo por texto en la interfaz. `Wordmark.astro` utiliza Cormorant Garamond 600 italic, con espaciado compacto, color crema y descriptor Pizzería. Es una aproximación visual, no una identificación exacta del original. Los afiches mantienen su diseño original.
+
+Playfair Display y Plus Jakarta Sans se mantienen para títulos y cuerpo. Las cinco variantes se sirven localmente en WOFF2 desde `public/fonts/`, con licencias OFL y `font-display: swap`. El logo tipográfico se precarga. Fuentes: Google Fonts y distribución Fontsource.
+
+Botón fijo de contacto en vino y crema, sin pulso, con espacio inferior para evitar tapar el footer. El aviso de horario comunica el horario habitual en America/Montevideo, nunca stock ni apertura confirmada en tiempo real.
+
+## Prueba de campana interactiva
+
+El hero usa una escena con relación 1672:941. Fondo, bandeja, tapa y pizza comparten ese sistema de coordenadas; en móvil se recortan los laterales de la escena, conservando la mesa centrada. `clip-path` separa la base y la tapa del PNG transparente de bandeja abierta. Se anima únicamente el desplazamiento de la tapa, desactivado con movimiento reducido. Las pizzas conservan su proporción y tienen compensaciones verticales por el margen transparente de cada original.

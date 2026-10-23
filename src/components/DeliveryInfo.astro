@@ -1,0 +1,27 @@
+---
+import ServiceHours from './ServiceHours.astro';
+import { Image } from 'astro:assets';
+import tray from '../../Assets/Presentation/bandeja.jpeg';
+import { businessInfo, whatsappLink } from '../data/businessInfo';
+---
+<section id="nosotros" class="bg-zaza-wine-900 text-zaza-cream-100">
+  <div class="mx-auto grid max-w-6xl md:grid-cols-2">
+    <Image src={tray} alt="Composición de ZAZA: una bandeja de servicio frente a un telón borgoña" widths={[480, 760]} sizes="(min-width: 768px) 50vw, 100vw" class="max-h-[600px] w-full object-cover" loading="lazy" />
+    <div class="self-center px-6 py-14 md:px-14">
+      <p class="eyebrow text-zaza-cream-300">Nuestra masa, nuestra esencia</p>
+      <h2 class="mt-5 text-4xl leading-tight md:text-5xl">Buenos ingredientes.<br />Alma casera.</h2>
+      <p class="mt-6 leading-7 text-zaza-cream-200">{businessInfo.proposition} Hecho con pasión, para disfrutar en casa.</p>
+      <a href="#menu" class="mt-8 inline-block py-3 underline underline-offset-8">Encontrá tu próxima pizza ↗</a>
+    </div>
+  </div>
+</section>
+<section id="delivery" class="bg-zaza-cream-100 px-6 py-16 md:py-24">
+  <div class="mx-auto grid max-w-6xl gap-10 md:grid-cols-2 md:gap-16">
+    <div><p class="eyebrow text-zaza-wine-700">De ZAZA a tu mesa</p><h2 class="mt-4 text-5xl text-zaza-wine-800">¿Sale pizza hoy?</h2><p class="mt-5 max-w-sm leading-7 text-zaza-muted">Elegí en la carta y escribinos. Coordinamos tu pedido y el pago por WhatsApp.</p><a class="button mt-7 bg-zaza-wine-800 text-zaza-cream-100 hover:bg-zaza-wine-700" href={whatsappLink()} target="_blank" rel="noopener noreferrer">Pedir por WhatsApp ↗</a></div>
+    <dl class="space-y-6">
+      <div class="border-b border-zaza-cream-300 pb-6"><dt class="eyebrow text-zaza-wine-700">Horario de cocina</dt><dd class="mt-2 text-xl">Todos los días · {businessInfo.schedule.hours}<ServiceHours /></dd></div>
+      <div class="border-b border-zaza-cream-300 pb-6"><dt class="eyebrow text-zaza-wine-700">100% delivery</dt><dd class="mt-2 text-xl">Todo Rosario, Colonia</dd><dd class="mt-2 text-sm text-zaza-muted">Sin atención presencial ni retiro en local.</dd></div>
+      <div><dt class="eyebrow text-zaza-wine-700">Medios de pago</dt><dd class="mt-3 leading-7">{businessInfo.delivery.paymentMethods.join(' · ')}</dd></div>
+    </dl>
+  </div>
+</section>

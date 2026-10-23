@@ -1,84 +1,16 @@
 ---
-import { businessInfo } from '../data/businessInfo';
-import { MessageCircle, Clock, MapPin, Instagram } from 'lucide-astro';
+import Wordmark from './Wordmark.astro';
+import { whatsappLink } from '../data/businessInfo';
 ---
-
-<header class="sticky top-0 z-40 bg-zaza-wine-900/95 backdrop-blur-md border-b border-zaza-wine-700/60 shadow-lg text-zaza-cream-100 transition-all">
-  <!-- Barra superior informativa (horarios y cobertura) -->
-  <div class="hidden sm:flex justify-between items-center px-4 py-1.5 text-xs text-zaza-cream-300 border-b border-zaza-wine-800/80 max-w-7xl mx-auto">
-    <div class="flex items-center gap-6">
-      <span class="flex items-center gap-1.5">
-        <MapPin class="w-3.5 h-3.5 text-zaza-gold-400" />
-        <span>Delivery en todo {businessInfo.location.city}</span>
-      </span>
-      <span class="flex items-center gap-1.5">
-        <Clock class="w-3.5 h-3.5 text-zaza-gold-400" />
-        <span>{businessInfo.schedule.hours} • {businessInfo.schedule.days}</span>
-      </span>
-    </div>
-    <div>
-      <a 
-        href={businessInfo.contact.instagramUrl} 
-        target="_blank" 
-        rel="noopener noreferrer" 
-        class="hover:text-zaza-gold-400 transition-colors flex items-center gap-1"
-        aria-label="Instagram ZAZA"
-      >
-        <Instagram class="w-3.5 h-3.5" />
-        <span>{businessInfo.contact.instagramHandle}</span>
-      </a>
-    </div>
+<header class="sticky top-0 z-40 border-b border-zaza-cream-300/20 bg-zaza-wine-800 text-zaza-cream-100">
+  <div class="mx-auto flex max-w-6xl min-h-24 items-center justify-between px-6 pr-24 sm:pr-32 md:pr-36">
+    <Wordmark />
+    <nav aria-label="Navegación principal" class="hidden gap-7 text-sm md:flex">
+      <a href="#menu">Menú</a><a href="#destacadas">Especialidades</a><a href="#delivery">Delivery &amp; Pagos</a><a href="#nosotros">Nuestra Masa</a>
+    </nav>
+    <a class="button border border-zaza-cream-300/60 text-sm hover:bg-zaza-wine-700" href={whatsappLink()} target="_blank" rel="noopener noreferrer">Hacer pedido ↗</a>
   </div>
-
-  <!-- Navegación principal -->
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-    <!-- Logotipo / Nombre de Marca -->
-    <a href="/" class="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-zaza-gold-400 rounded-lg">
-      <img 
-        src="/Assets/Logos/zaza-pizzeria-simple.jpeg" 
-        alt="ZAZA Pizzería" 
-        class="w-12 h-12 rounded-full border border-zaza-gold-500/60 object-cover shadow-md group-hover:scale-105 transition-transform"
-        width="48"
-        height="48"
-      />
-      <div class="flex flex-col">
-        <span class="font-serif text-2xl font-black tracking-wider text-zaza-cream-50 group-hover:text-zaza-gold-400 transition-colors">
-          {businessInfo.name}
-        </span>
-        <span class="text-[10px] uppercase tracking-widest text-zaza-gold-400 font-semibold -mt-1">
-          Pizzería Artesanal
-        </span>
-      </div>
-    </a>
-
-    <!-- Enlaces de navegación rápida (anclas de scroll) -->
-    <div class="hidden md:flex items-center space-x-8 text-sm font-medium">
-      <a href="#menu" class="hover:text-zaza-gold-400 transition-colors py-1">
-        Menú
-      </a>
-      <a href="#destacadas" class="hover:text-zaza-gold-400 transition-colors py-1">
-        Especialidades
-      </a>
-      <a href="#delivery" class="hover:text-zaza-gold-400 transition-colors py-1">
-        Delivery & Pagos
-      </a>
-      <a href="#nosotros" class="hover:text-zaza-gold-400 transition-colors py-1">
-        Nuestra Masa
-      </a>
-    </div>
-
-    <!-- Botón directo de WhatsApp -->
-    <div class="flex items-center gap-3">
-      <a
-        href={businessInfo.contact.whatsappUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-zaza-wine-700 hover:bg-zaza-wine-600 text-zaza-cream-50 font-semibold text-sm border border-zaza-gold-500/40 shadow-md hover:shadow-zaza-wine-700/50 hover:-translate-y-0.5 active:translate-y-0 transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-zaza-gold-400"
-      >
-        <MessageCircle class="w-4 h-4 text-emerald-400 fill-emerald-400" />
-        <span class="hidden xs:inline">Pedir por WhatsApp</span>
-        <span class="xs:hidden">Pedir</span>
-      </a>
-    </div>
+  <nav aria-label="Navegación móvil" class="flex justify-center gap-5 border-t border-zaza-cream-300/20 px-3 py-3 pr-20 text-xs md:hidden">
+    <a href="#menu">Menú</a><a href="#destacadas">Especialidades</a><a href="#delivery">Delivery &amp; Pagos</a><a href="#nosotros">Nuestra Masa</a>
   </nav>
 </header>

@@ -1,134 +1,180 @@
-import type { MenuItem } from '../types';
+import type { MenuItem } from "../types";
 
 export const menuItems: MenuItem[] = [
   // --- PIZZAS CLÁSICAS ---
   {
-    id: 'margarita',
-    name: 'Margarita',
-    category: 'clasicas',
-    description: 'Salsa de tomate casera, muzzarella fundida, hojas de albahaca fresca y aceite de oliva virgen extra.',
+    id: "margarita",
+    name: "Margarita",
+    category: "clasicas",
+    description:
+      "Salsa de tomate, muzzarella, albahaca fresca y aceite de oliva.",
     price: 380,
-    ingredients: ['Salsa de tomate', 'Muzzarella', 'Albahaca fresca', 'Aceite de oliva'],
+    ingredients: [
+      "Salsa de tomate",
+      "Muzzarella",
+      "Albahaca fresca",
+      "Aceite de oliva",
+    ],
     isFeatured: true,
-    image: '/Assets/Menu/menu4-margarita.jpeg',
-    badge: 'Tradicional'
+    image: "/assets/Menu/menu4-margarita.jpeg",
+    badge: "Tradicional",
   },
   {
-    id: 'muzza',
-    name: 'Muzza',
-    category: 'clasicas',
-    description: 'Nuestra clásica imperdible: abundante doble muzzarella, salsa de tomate de la casa, orégano seleccionado y aceitunas.',
+    id: "muzza",
+    name: "Muzza",
+    category: "clasicas",
+    description: "Salsa de tomate, doble muzzarella, orégano y aceitunas.",
     price: 450,
-    ingredients: ['Salsa de tomate', 'Doble muzzarella', 'Orégano', 'Aceitunas'],
+    ingredients: [
+      "Salsa de tomate",
+      "Doble muzzarella",
+      "Orégano",
+      "Aceitunas",
+    ],
     isFeatured: true,
-    badge: 'La más pedida'
+    badge: "Clásica",
   },
   {
-    id: 'napolitana',
-    name: 'Napolitana',
-    category: 'clasicas',
-    description: 'Salsa de tomate, muzzarella, rodajas finas de tomate fresco, orégano y aceitunas negras.',
+    id: "napolitana",
+    name: "Napolitana",
+    category: "clasicas",
+    description: "Salsa de tomate, muzzarella, tomate, orégano y aceitunas.",
     price: 450,
-    ingredients: ['Salsa de tomate', 'Muzzarella', 'Tomate fresco', 'Orégano', 'Aceitunas']
+    ingredients: [
+      "Salsa de tomate",
+      "Muzzarella",
+      "Tomate fresco",
+      "Orégano",
+      "Aceitunas",
+    ],
   },
   {
-    id: 'jamon-y-morrones',
-    name: 'Jamón y Morrones',
-    category: 'clasicas',
-    description: 'Muzzarella de primera, jamón cocido seleccionado y morrones rojos asados al natural con aceitunas.',
+    id: "jamon-y-morrones",
+    name: "Jamón y Morrones",
+    category: "clasicas",
+    description: "Salsa de tomate, muzzarella, jamón, morrón rojo y aceitunas.",
     price: 450,
-    ingredients: ['Salsa de tomate', 'Muzzarella', 'Jamón cocido', 'Morrón rojo asado', 'Aceitunas']
+    ingredients: [
+      "Salsa de tomate",
+      "Muzzarella",
+      "Jamón",
+      "Morrón rojo",
+      "Aceitunas",
+    ],
   },
 
   // --- PIZZAS ESPECIALES ---
   {
-    id: 'cuatro-quesos',
-    name: 'Cuatro Quesos',
-    category: 'especiales',
-    description: 'Armoniosa combinación de quesos seleccionados: muzzarella, queso azul intenso, parmesano curado y provolone fundido.',
+    id: "cuatro-quesos",
+    name: "Cuatro Quesos",
+    category: "especiales",
+    description:
+      "Salsa de tomate, muzzarella, queso azul, queso parmesano y queso provolone.",
     price: 680,
-    ingredients: ['Salsa de tomate', 'Muzzarella', 'Queso azul', 'Parmesano', 'Provolone'],
+    ingredients: [
+      "Salsa de tomate",
+      "Muzzarella",
+      "Queso azul",
+      "Parmesano",
+      "Provolone",
+    ],
     isFeatured: true,
-    image: '/Assets/Menu/menu3-4-quesos.jpeg',
-    badge: 'Gourmet'
+    image: "/assets/Menu/menu3-4-quesos.jpeg",
+    badge: "Gourmet",
   },
   {
-    id: 'pepperoni',
-    name: 'Pepperoni',
-    category: 'especiales',
-    description: 'Base de salsa de tomate, muzzarella y lonjas doradas y crujientes de pepperoni con un toque de orégano.',
+    id: "pepperoni",
+    name: "Pepperoni",
+    category: "especiales",
+    description: "Salsa de tomate, muzzarella, pepperoni y orégano.",
     price: 350,
-    ingredients: ['Salsa de tomate', 'Muzzarella', 'Pepperoni', 'Orégano']
+    ingredients: ["Salsa de tomate", "Muzzarella", "Pepperoni", "Orégano"],
   },
   {
-    id: 'capresse',
-    name: 'Capresse',
-    category: 'especiales',
-    description: 'Muzzarella fundida, tomates cherry confitados, albahaca fresca del día y finas gotas de aceite de oliva.',
+    id: "capresse",
+    name: "Capresse",
+    category: "especiales",
+    description:
+      "Salsa de tomate, muzzarella, tomate cherry, albahaca y aceite de oliva.",
     price: 450,
-    ingredients: ['Salsa de tomate', 'Muzzarella', 'Tomate cherry', 'Albahaca', 'Aceite de oliva'],
+    ingredients: [
+      "Salsa de tomate",
+      "Muzzarella",
+      "Tomate cherry",
+      "Albahaca",
+      "Aceite de oliva",
+    ],
     isFeatured: true,
-    image: '/Assets/Menu/menu2-capresse.jpeg',
-    badge: 'Frescura'
+    image: "/assets/Menu/menu2-capresse.jpeg",
+    badge: "Frescura",
   },
   {
-    id: 'pi-zaza',
-    name: 'Pi-ZAZA',
-    category: 'especiales',
-    description: 'La insignia y orgullo de la casa: muzzarella, jamón cocido, pepperoni crocante, morrón, aceitunas y orégano.',
+    id: "pi-zaza",
+    name: "Pi-ZAZA",
+    category: "especiales",
+    description:
+      "Salsa de tomate, muzzarella, jamón, pepperoni, morrón, aceitunas y orégano.",
     price: 450,
-    ingredients: ['Salsa de tomate', 'Muzzarella', 'Jamón', 'Pepperoni', 'Morrón', 'Aceitunas', 'Orégano'],
+    ingredients: [
+      "Salsa de tomate",
+      "Muzzarella",
+      "Jamón",
+      "Pepperoni",
+      "Morrón",
+      "Aceitunas",
+      "Orégano",
+    ],
     isFeatured: true,
-    image: '/Assets/Menu/menu1-pi-zaza.jpeg',
-    badge: 'Especial de la Casa'
+    image: "/assets/Menu/menu1-pi-zaza.jpeg",
+    badge: "Especial de la Casa",
   },
 
   // --- PARA ACOMPAÑAR ---
   {
-    id: 'papas-fritas',
-    name: 'Papas Fritas',
-    category: 'acompanamientos',
-    description: 'Papas fritas clásicas, crujientes por fuera y suaves por dentro.',
+    id: "papas-fritas",
+    name: "Papas Fritas",
+    category: "acompanamientos",
+    description: "Papas fritas.",
     price: 150,
-    ingredients: ['Papas seleccionadas']
+    ingredients: ["Papas seleccionadas"],
   },
   {
-    id: 'papas-noisette',
-    name: 'Papas Noisette',
-    category: 'acompanamientos',
-    description: 'Deliciosas papitas noisette doradas al punto justo.',
+    id: "papas-noisette",
+    name: "Papas Noisette",
+    category: "acompanamientos",
+    description: "Papas noisette.",
     price: 150,
-    ingredients: ['Papas noisette']
+    ingredients: ["Papas noisette"],
   },
 
   // --- BEBIDAS ---
   {
-    id: 'refresco-1-5l',
-    name: 'Refrescos 1.5L',
-    category: 'bebidas',
-    description: 'Línea de refrescos familiares de 1.5 litros (sabores a consultar).',
-    price: 200
+    id: "refresco-1-5l",
+    name: "Refrescos 1.5L",
+    category: "bebidas",
+    description: "Refrescos de 1.5 litros.",
+    price: 200,
   },
   {
-    id: 'agua-1l',
-    name: 'Agua 1L',
-    category: 'bebidas',
-    description: 'Agua mineral de 1 litro, con o sin gas.',
-    price: 150
+    id: "agua-1l",
+    name: "Agua 1L",
+    category: "bebidas",
+    description: "Agua de 1 litro.",
+    price: 150,
   },
   {
-    id: 'patagonia-700ml',
-    name: 'Cerveza Patagonia 700ml',
-    category: 'bebidas',
-    description: 'Cerveza Patagonia 700ml ideal para maridar con tu pizza artesanal.',
+    id: "patagonia-700ml",
+    name: "Cerveza Patagonia 700ml",
+    category: "bebidas",
+    description: "Cerveza Patagonia de 700 ml.",
     price: 350,
-    badge: 'Cerveza'
-  }
+    badge: "Cerveza",
+  },
 ];
 
 export const categoriesMap = [
-  { id: 'clasicas', label: 'Pizzas Clásicas' },
-  { id: 'especiales', label: 'Pizzas Especiales' },
-  { id: 'acompanamientos', label: 'Para Acompañar' },
-  { id: 'bebidas', label: 'Bebidas' }
+  { id: "clasicas", label: "Pizzas Clásicas" },
+  { id: "especiales", label: "Pizzas Especiales" },
+  { id: "acompanamientos", label: "Para Acompañar" },
+  { id: "bebidas", label: "Bebidas" },
 ] as const;

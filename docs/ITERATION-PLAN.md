@@ -11,9 +11,9 @@ Este documento desglosa el plan de ejecución por sprints o iteraciones para la 
 | **Iteración 0** | Documentación, Relevamiento & Arquitectura | Suite de Docs, Assets organizados y Reglas de Desarrollo | `v0.1.0` | **COMPLETADA ✅** |
 | **Iteración 1** | Inicialización del Proyecto Astro & Design System | Proyecto base con Tailwind tokens, tipografía e iconos | `v0.2.0` | **COMPLETADA ✅** |
 | **Iteración 2** | Capa de Datos & Componentes de Cabecera y Hero | Datos tipados de menú, Layout SEO, Navbar y Hero Section | `v0.3.0` | **COMPLETADA ✅** |
-| **Iteración 3** | Catálogo Gastronómico & Sección Delivery | MenuSection, PizzaCards interactivas e Info Operativa | `v0.4.0` | **SIGUIENTE 🎯** |
-| **Iteración 4** | Integración de Contacto WhatsApp, Footer & A11y | Botón flotante WhatsApp, Footer, microanimaciones y accesibilidad | `v0.5.0` | **PLANIFICADA 📋** |
-| **Iteración 5** | Auditoría, Optimización de Assets & Despliegue | Build de producción sin errores, Lighthouse 90+ y URL en Vercel/Netlify | `v1.0.0` (Stable) | **PLANIFICADA 📋** |
+| **Iteración 3** | Catálogo Gastronómico & Sección Delivery | MenuSection, PizzaCards interactivas e Info Operativa | `v0.4.0` | **IMPLEMENTADA; revisión visual pendiente del usuario** |
+| **Iteración 4** | Integración de Contacto WhatsApp, Footer & A11y | Botón flotante WhatsApp, Footer, microanimaciones y accesibilidad | `v0.5.0` | **IMPLEMENTADA** |
+| **Iteración 5** | Auditoría, Optimización de Assets & Despliegue | Build de producción sin errores, Lighthouse 90+ y URL en Vercel/Netlify | `v1.0.0` (Stable) | **AUDITORÍA EN CURSO; hosting pendiente** |
 
 > **Regla de Parches:** Cualquier corrección o ajuste puntual posterior a un cierre de iteración añade `+ v0.0.1` (ejemplo: `v0.1.1`).
 
@@ -84,3 +84,42 @@ Este documento desglosa el plan de ejecución por sprints o iteraciones para la 
   3. Realizar auditoría Lighthouse en Chrome DevTools (Performance >= 90, Accessibility >= 90, SEO >= 90).
   4. Conectar con Vercel o Netlify para generar la URL pública de vista previa para el cliente.
 - **Criterio de salida (DoD):** Sitio web activo en URL pública de prueba y validado con los dueños de ZAZA.
+
+## Continuación del 23 de octubre de 2026
+
+- Iteración 3: catálogo completo de 13 productos, categorías mediante anclas nativas (funcionan sin JavaScript), cuatro fotos optimizadas, precios UYU y delivery.
+- Corrección visual de iteración 2: portada editorial vino/crema, afiche sin recortes, telón y bandeja del material original. Se mantienen logos y navegación.
+- Adelantos de iteración 4: footer, consultas por producto, mensajes WhatsApp, salto al contenido, foco visible y movimiento reducido.
+- Pendiente de iteración 4: botón flotante, auditoría completa de accesibilidad y aviso fuera de horario usando America/Montevideo.
+- Pendiente de iteración 5: Lighthouse, fuentes locales, dominio definitivo (se retiró el dominio inventado del canonical), aprobación visual y despliegue.
+- No se publica el afiche Pi-ZAZA de promoción: contiene una oferta que la ficha comercial no confirma.
+- No se cambia la versión de release hasta cerrar los criterios de salida.
+
+### Verificación de esta entrega
+
+- `npm run check`: 0 errores, 0 advertencias.
+- `npm run build`: correcto; imágenes optimizadas por Astro.
+- Chrome: 360, 390, 768, 1440 y 1920 px sin desbordes horizontales, imágenes fallidas ni anclas rotas; un único H1. Capturas de escritorio y móvil revisadas.
+- Formato comprobado en los archivos CSS, datos TypeScript y package.json modificados; `git diff --check` correcto.
+- Estas comprobaciones no sustituyen Lighthouse ni una auditoría completa de accesibilidad.
+
+## Marca tipográfica e iteraciones 4 y 5
+
+- Sustitución del logo JPEG autorizada por el usuario: Cormorant Garamond semibold italic en `Wordmark.astro`, sin recuadro, compartida por cabecera y pie.
+- Botón persistente WhatsApp, aviso de horario de Uruguay con actualización cada minuto y fallback sin JS.
+- Fuentes WOFF2 locales con licencias OFL. Favicon tipográfico Z y Open Graph optimizado. URL de despliegue configurable mediante `PUBLIC_SITE_URL`.
+- Se agregan tipos de Node como dependencia de desarrollo para validar la configuración.
+- Horario probado en los límites de apertura, después de medianoche y cierre. Navegación, imágenes y ancho comprobados en 360, 390, 768, 1440 y 1920 px; capturas de cabecera revisadas.
+- Publicación pendiente: falta vincular un proyecto Vercel/Netlify y definir su URL real. No se publicó ni se modificó el remoto Git.
+
+### Auditoría local final (móvil)
+
+Lighthouse: Performance 81, Accessibility 100, Best Practices 100, SEO 100. LCP 2.9 s, TBT 540 ms, CLS 0.041. La primera medición dio Performance 88; la variación local no permite declarar alcanzado el objetivo de 90. La auditoría final ya no detecta discrepancias entre etiquetas visibles y nombres accesibles. Pendiente optimizar y repetir rendimiento en el hosting real con compresión y caché, además de pruebas manuales en dispositivos. Iteración 5 permanece abierta.
+
+`npm run check`: 0 errores/advertencias. `npm run build`: correcto. No se da por completado el despliegue.
+
+## Prueba de hero solicitada por el usuario
+
+Se sustituye la portada con afiche por una escena de mesa y campana con cuatro pizzas. Assets incorporados desde `~/Descargas/ZAZA-Pizzeria/Assets`. Se prioriza probar la tapa animada; la alternativa de bandeja siempre abierta queda como opción de diseño si el usuario la prefiere. No se modifica la carta ni las otras secciones. Sin JavaScript se muestra Capresse con la tapa levantada y enlace funcional de pedido.
+
+La auditoría Lighthouse anterior corresponde al hero anterior; no representa el rendimiento de esta prueba de carrusel. Validación de esta prueba: tipos, build, apertura/cierre, navegación cíclica y teclado, sincronización de pedido con producto, fallback sin JavaScript y revisión visual en móvil/escritorio.

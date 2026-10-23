@@ -1,0 +1,102 @@
+---
+import { Image } from 'astro:assets';
+import bordeauxPhone from '../../Assets/Pngs/hanging-bordeaux-phone.png';
+import { whatsappLink } from '../data/businessInfo';
+---
+
+<aside aria-label="Contacto por WhatsApp">
+  <a
+    href={whatsappLink()}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="hanging-phone-link group"
+    aria-label="Pedir por WhatsApp (abre en otra pestaña)"
+  >
+    <div class="phone-wrapper">
+      <Image
+        src={bordeauxPhone}
+        alt="Teléfono retro ZAZA para pedir por WhatsApp"
+        width={240}
+        class="phone-img"
+        loading="eager"
+      />
+    </div>
+  </a>
+</aside>
+
+<style>
+  .hanging-phone-link {
+    position: fixed;
+    top: 0;
+    right: 1.25rem;
+    z-index: 50;
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+    touch-action: manipulation;
+    transform-origin: 50% 0%;
+  }
+
+  .phone-wrapper {
+    position: relative;
+    display: block;
+    transform-origin: 50% 0%;
+  }
+
+  .phone-img {
+    width: 90px;
+    height: auto;
+    display: block;
+    transform-origin: 50% 0%;
+    transition: transform 450ms cubic-bezier(0.34, 1.56, 0.64, 1), filter 300ms ease;
+    filter: drop-shadow(0 10px 18px rgba(61, 12, 17, 0.55));
+  }
+
+  /* Efecto de balanceo/inclinación al hover */
+  .hanging-phone-link:hover .phone-img,
+  .hanging-phone-link:focus-visible .phone-img {
+    transform: rotate(-15deg) scale(1.04);
+    filter: drop-shadow(0 16px 26px rgba(61, 12, 17, 0.8));
+  }
+
+  .hanging-phone-link:active .phone-img {
+    transform: rotate(-8deg) scale(0.98);
+  }
+
+  .hanging-phone-link:focus-visible {
+    outline: none;
+  }
+
+  .hanging-phone-link:focus-visible .phone-img {
+    outline: 2px dashed var(--color-zaza-cream-100, #faf6ee);
+    outline-offset: 4px;
+    border-radius: 8px;
+  }
+
+  @media (min-width: 768px) {
+    .hanging-phone-link {
+      right: 2.25rem;
+    }
+    .phone-img {
+      width: 112px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .hanging-phone-link {
+      right: 0.75rem;
+    }
+    .phone-img {
+      width: 76px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .phone-img {
+      transition: none;
+    }
+    .hanging-phone-link:hover .phone-img {
+      transform: none;
+    }
+  }
+</style>

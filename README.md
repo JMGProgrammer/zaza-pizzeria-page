@@ -23,7 +23,7 @@ Este proyecto tiene como objetivo presentar la identidad de la marca, su propues
 - **Lenguaje:** TypeScript
 - **Estilos:** Tailwind CSS
 - **Iconografía:** Lucide (`lucide-astro`)
-- **Tipografía y recursos visuales:** Google Fonts e imágenes optimizadas
+- **Tipografía y recursos visuales:** Fuentes locales con licencia OFL e imágenes optimizadas
 - **Control de versiones:** Git & GitHub
 - **Despliegue objetivo:** Vercel o Netlify
 
@@ -37,6 +37,7 @@ zaza-pizzeria-page/
 │   ├── Backgrounds/
 │   ├── Logos/
 │   ├── Menu/
+│   ├── Pngs/               # Elementos transparentes para composiciones interactivas
 │   └── Presentation/
 ├── docs/                   # Documentación técnica, de negocio y guías de desarrollo
 │   ├── AGENTS.md           # Instrucciones operativas para agentes de IA
@@ -58,20 +59,32 @@ zaza-pizzeria-page/
 └── README.md
 ```
 
-> **Nota sobre el código fuente (`src/`):** El repositorio se encuentra actualmente en fase de relevamiento documental y preparación de assets. La estructura del proyecto Astro se generará siguiendo la arquitectura descrita en [docs/TECH-STACK.md](docs/TECH-STACK.md) y [docs/DEVELOPMENT-RULES.md](docs/DEVELOPMENT-RULES.md).
+## Estado de implementación
+
+Portada rediseñada y catálogo completo implementado. Los originales de `Assets/` se importan mediante `astro:assets` y se generan variantes WebP.
+
+- `src/components/`: Navbar, Wordmark, Hero, MenuSection, PizzaCard, DeliveryInfo, ServiceHours, WhatsAppButton y Footer.
+- `src/data/`: carta tipada y datos de negocio; enlaces WhatsApp con mensaje.
+- `src/pages/index.astro`: composición de la landing.
+- `src/layouts/Layout.astro`: metadatos y estructura HTML.
+- `src/styles/global.css`: tokens Tailwind y estilos compartidos.
+- `src/styles/fonts.css` y `public/fonts/`: fuentes locales WOFF2 y licencias.
+- `src/utils/schedule.ts`: horario de Uruguay, incluyendo cierre después de medianoche.
+
+Ver [plan de iteraciones](docs/ITERATION-PLAN.md) para pendientes de validación y publicación.
 
 ---
 
 ## 🚀 Requisitos e Instalación
 
 ### Prerrequisitos
-- **Node.js:** Versión `>= 18.17.1` o `>= 20.x`
+- **Node.js:** Versión `>= 22.23.4`
 - **Gestor de paquetes:** `npm` (o `pnpm` / `bun`)
 - **Git**
 
 ### Comandos de Desarrollo (Proyecto Astro estándar)
 
-Una vez inicializado el proyecto en `src/`:
+Desde la raíz del repositorio:
 
 ```bash
 # Instalar dependencias
@@ -79,6 +92,9 @@ npm install
 
 # Iniciar servidor de desarrollo local
 npm run dev
+
+# Validar tipos
+npm run check
 
 # Generar compilación de producción
 npm run build
@@ -117,3 +133,7 @@ Toda la documentación detallada se encuentra centralizada en la carpeta [`docs/
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+
+## Hero interactivo sobre mesa
+
+`src/components/Hero.astro` reemplaza la portada anterior por la escena `Assets/hero-para-pngs.png`, la bandeja transparente de `Assets/Pngs/bandejas/` y cuatro pizzas de `Assets/Pngs/pizzas/`. La tapa y el plato se separan visualmente con CSS sobre el mismo PNG, sin alterar originales. Carrusel manual con botones, teclado y apertura por hover o toque; sin reproducción automática.
