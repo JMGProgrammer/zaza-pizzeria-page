@@ -1,10 +1,21 @@
 ---
+import { Image } from "astro:assets";
+import headerBackground from "../../Assets/Backgrounds/header-bg.png";
 import Wordmark from "./Wordmark.astro";
 import { whatsappLink } from "../data/businessInfo";
 ---
 
-<header class="sticky top-0 z-40 border-b border-zaza-cream-300/20 bg-zaza-wine-800 text-zaza-cream-100">
-  <div class="mx-auto flex max-w-6xl min-h-24 items-center justify-between px-6 pr-24 sm:pr-32 md:pr-36">
+<header class="header-canopy sticky top-0 z-40 isolate overflow-hidden bg-zaza-wine-800 text-zaza-cream-100">
+  <Image
+    src={headerBackground}
+    alt=""
+    widths={[640, 1280, 1920]}
+    sizes="100vw"
+    class="header-canopy-image"
+    aria-hidden="true"
+    loading="eager"
+  />
+  <div class="relative z-10 mx-auto flex min-h-24 max-w-6xl items-center justify-between px-6 pr-24 sm:pr-32 md:pr-36">
     <Wordmark />
     <nav aria-label="Navegación principal" class="hidden gap-7 text-sm md:flex">
       <a href="#menu">Menú</a>
@@ -23,7 +34,7 @@ import { whatsappLink } from "../data/businessInfo";
   </div>
   <nav
     aria-label="Navegación móvil"
-    class="flex justify-center gap-5 border-t border-zaza-cream-300/20 px-3 py-3 pr-20 text-xs md:hidden"
+    class="relative z-10 flex justify-center gap-5 border-t border-zaza-cream-300/20 px-3 py-3 pr-20 text-xs md:hidden"
   >
     <a href="#menu">Menú</a>
     <a href="#destacadas">Especialidades</a>
@@ -31,3 +42,33 @@ import { whatsappLink } from "../data/businessInfo";
     <a href="#nosotros">Nuestra Masa</a>
   </nav>
 </header>
+
+<style>
+  .header-canopy {
+    box-shadow: 0 8px 22px rgb(49 7 12 / 0.38);
+  }
+
+  .header-canopy-image {
+    position: absolute;
+    inset: 0 0 auto;
+    z-index: 0;
+    width: 100%;
+    height: 268%;
+    object-fit: fill;
+    pointer-events: none;
+  }
+
+  .header-canopy::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background: linear-gradient(
+      90deg,
+      rgb(50 7 12 / 0.18),
+      transparent 35%,
+      rgb(50 7 12 / 0.16)
+    );
+    pointer-events: none;
+  }
+</style>
