@@ -16,8 +16,8 @@ import { whatsappLink } from "../data/businessInfo";
       <Image
         src={bordeauxPhone}
         alt="Teléfono retro ZAZA para pedir por WhatsApp"
-        widths={[76, 112, 152]}
-        sizes="(max-width: 480px) 76px, (min-width: 768px) 112px, 90px"
+        widths={[96, 128, 160]}
+        sizes="(max-width: 480px) 96px, (min-width: 768px) 136px, 112px"
         class="phone-img"
         loading="eager"
       />
@@ -28,7 +28,7 @@ import { whatsappLink } from "../data/businessInfo";
 <style>
   .hanging-phone-link {
     position: fixed;
-    top: 0;
+    top: 8.9rem;
     right: 1.25rem;
     z-index: 50;
     display: block;
@@ -45,7 +45,7 @@ import { whatsappLink } from "../data/businessInfo";
   }
 
   .phone-img {
-    width: 90px;
+    width: 112px;
     height: auto;
     display: block;
     transform-origin: 50% 0%;
@@ -79,9 +79,10 @@ import { whatsappLink } from "../data/businessInfo";
   @media (min-width: 768px) {
     .hanging-phone-link {
       right: 2.25rem;
+      top: 6rem;
     }
     .phone-img {
-      width: 112px;
+      width: 136px;
     }
   }
 
@@ -90,7 +91,7 @@ import { whatsappLink } from "../data/businessInfo";
       right: 0.75rem;
     }
     .phone-img {
-      width: 76px;
+      width: 96px;
     }
   }
 
