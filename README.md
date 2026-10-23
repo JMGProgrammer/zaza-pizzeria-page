@@ -55,6 +55,7 @@ zaza-pizzeria-page/
 │   └── TECH-STACK.md       # Decisiones técnicas y arquitectura frontend
 ├── AGENTS.md               # Instrucciones de IA en raíz para herramientas
 ├── CHANGELOG.md            # Registro histórico de versiones y cambios notables
+├── prettier.config.mjs     # Formato reproducible para Astro, TypeScript y CSS
 ├── LICENSE
 └── README.md
 ```
@@ -96,12 +97,17 @@ npm run dev
 # Validar tipos
 npm run check
 
+# Validar formato, tipos y build en una sola ejecución
+npm run validate
+
 # Generar compilación de producción
 npm run build
 
 # Previsualizar la compilación de producción localmente
 npm run preview
 ```
+
+Antes del despliegue, copiar `.env.example` como variable de entorno del proveedor y reemplazar `PUBLIC_SITE_URL` por la URL real asignada.
 
 ---
 

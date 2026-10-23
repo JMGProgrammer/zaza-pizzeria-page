@@ -1,19 +1,44 @@
 ---
-import { Image } from 'astro:assets';
-import type { ImageMetadata } from 'astro';
-import type { MenuItem } from '../types';
-import { whatsappLink } from '../data/businessInfo';
-interface Props { item: MenuItem }
+import { Image } from "astro:assets";
+import type { ImageMetadata } from "astro";
+import type { MenuItem } from "../types";
+import { whatsappLink } from "../data/businessInfo";
+interface Props {
+  item: MenuItem;
+}
 const { item } = Astro.props;
-const photos = import.meta.glob<{ default: ImageMetadata }>('../../Assets/Menu/*.jpeg', { eager: true });
-const photo = item.image ? photos[`../../Assets/Menu/${item.image.split('/').pop()}`]?.default : undefined;
+const photos = import.meta.glob<{ default: ImageMetadata }>(
+  "../../Assets/Menu/*.jpeg",
+  { eager: true },
+);
+const photo = item.image
+  ? photos[`../../Assets/Menu/${item.image.split("/").pop()}`]?.default
+  : undefined;
 ---
+
 <article>
-  {photo && <Image quality={65} src={photo} alt={`Pizza ${item.name} de ZAZA`} widths={[320, 480, 640]} sizes="(min-width: 1024px) 260px, (min-width: 640px) 45vw, 90vw" class="aspect-[4/5] w-full rounded-sm object-cover" loading="lazy" />}
+  {photo && (
+    <Image
+      quality={65}
+      src={photo}
+      alt={`Pizza ${item.name} de ZAZA`}
+      widths={[320, 480, 640]}
+      sizes="(min-width: 1024px) 260px, (min-width: 640px) 45vw, 90vw"
+      class="aspect-[4/5] w-full rounded-sm object-cover"
+      loading="lazy"
+    />
+  )}
   <div class="mt-5 flex items-baseline justify-between gap-3">
     <h3 class="text-2xl text-zaza-wine-800">{item.name}</h3>
     <span class="shrink-0 text-lg font-semibold">$ {item.price}</span>
   </div>
   <p class="mt-3 text-sm leading-6 text-zaza-muted">{item.description}</p>
-  <a href={whatsappLink(`¡Hola ZAZA! Quisiera pedir ${item.name}.`)} target="_blank" rel="noopener noreferrer" class="mt-4 inline-block py-2 text-sm font-semibold text-zaza-wine-700 underline underline-offset-4">Pedir {item.name} ↗</a>
+  <a
+    href={whatsappLink(`¡Hola ZAZA! Quisiera pedir ${item.name}.`)}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="mt-4 inline-block py-2 text-sm font-semibold text-zaza-wine-700 underline underline-offset-4"
+  >
+    Pedir {item.name} ↗
+  </a>
 </article>

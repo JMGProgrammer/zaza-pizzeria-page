@@ -6,12 +6,12 @@ Este documento detalla el estado actual de avance del proyecto, los hitos inmedi
 
 ## 1. Estado Actual del Repositorio
 
-- **Fase actual:** Hito 3 implementado; validación visual y auditoría final en curso.
+- **Fase actual:** pre-deploy completado; falta publicar y validar el preview sobre CDN.
 - **Activos recopilados:**
   - Ficha de relevamiento de negocio ([docs/BUSINESS-INFO.md](BUSINESS-INFO.md)).
   - Identidad gráfica, logotipos, fotos de platos y texturas en `Assets/`.
   - Definición completa del stack técnico, alcance, diseño y guías editoriales en `docs/`.
-- **Pendiente inmediato:** completar accesibilidad, auditoría Lighthouse y publicación del preview.
+- **Pendiente inmediato:** conectar Vercel o Netlify, definir `PUBLIC_SITE_URL`, repetir Lighthouse móvil y validar en dispositivos reales.
 
 ---
 
@@ -40,8 +40,9 @@ Este documento detalla el estado actual de avance del proyecto, los hitos inmedi
 
 ### Hito 4: Verificación, Auditoría y Despliegue del Preview (PRÓXIMO 🎯)
 - [x] Optimización de imágenes (`<Image />` de Astro en WebP/AVIF).
-- [ ] Verificación de todos los enlaces salientes (WhatsApp con texto automático, Instagram).
-- [ ] Auditoría de accesibilidad, responsive y Core Web Vitals (Lighthouse >= 90).
+- [x] Verificación de todos los enlaces salientes (WhatsApp con texto automático, Instagram).
+- [x] Auditoría local de accesibilidad y responsive (Accessibility, Best Practices y SEO: 100; escritorio: 99 Performance).
+- [ ] Confirmación de Performance móvil >= 90 en el hosting real (local: 85-87, LCP 2.0-2.1 s, CLS 0).
 - [ ] Despliegue del preview en Vercel o Netlify para revisión con los dueños de ZAZA.
 
 ---

@@ -10,18 +10,21 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "check": "astro check"
+    "check": "astro check",
+    "format:check": "prettier --check \"src/**/*.{astro,ts,css}\" astro.config.mjs package.json prettier.config.mjs",
+    "validate": "npm run format:check && npm run check && npm run build"
   },
   "dependencies": {
     "@lucide/astro": "^1.61.0",
     "@tailwindcss/vite": "^4.3.3",
     "astro": "^7.4.2",
-    "lucide-astro": "^0.556.0",
     "tailwindcss": "^4.3.3"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
     "@types/node": "^26.6.5",
+    "prettier": "^3.9.10",
+    "prettier-plugin-astro": "^1.1.1",
     "typescript": "^6.0.3"
   }
 }

@@ -14,6 +14,7 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 - Información operativa de delivery, medios de pago, horario contextual de Uruguay, footer y contacto persistente.
 - Fuentes locales con licencia, SEO configurable mediante `PUBLIC_SITE_URL`, navegación por teclado y preferencias de movimiento reducido.
 - Nueva prueba de hero con escena teatral, campana interactiva y carrusel manual de cuatro pizzas, con fallback funcional sin JavaScript.
+- Preparación pre-deploy: validación reproducible con Prettier para Astro, comando `npm run validate`, Node fijado en `.nvmrc`, assets diferidos y metadatos dependientes de `PUBLIC_SITE_URL`.
 - Pendiente antes de `v1.0.0`: aprobación visual, Lighthouse de producción, pruebas en dispositivos reales y despliegue con URL pública.
 
 ## [0.3.0] - 2026-10-23

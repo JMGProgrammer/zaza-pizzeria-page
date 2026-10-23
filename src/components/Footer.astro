@@ -1,11 +1,26 @@
 ---
-import Wordmark from './Wordmark.astro';
-import { businessInfo, whatsappLink } from '../data/businessInfo';
+import Wordmark from "./Wordmark.astro";
+import { businessInfo, whatsappLink } from "../data/businessInfo";
 ---
+
 <footer id="contacto" class="bg-zaza-wine-800 px-6 py-10 text-zaza-cream-100">
   <div class="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
     <Wordmark />
-    <p class="text-sm leading-7">Rosario, Colonia, Uruguay<br />© {new Date().getFullYear()} ZAZA Pizzería</p>
-    <div class="flex flex-col gap-4 text-sm"><a href={businessInfo.contact.instagramUrl} target="_blank" rel="noopener noreferrer">Instagram · {businessInfo.contact.instagramHandle} ↗</a><a href={whatsappLink()} target="_blank" rel="noopener noreferrer">WhatsApp · {businessInfo.contact.phoneFormatted} ↗</a></div>
+    <p class="text-sm leading-7">
+      Rosario, Colonia, Uruguay
+      <br />© {new Date().getFullYear()} ZAZA Pizzería
+    </p>
+    <div class="flex flex-col gap-4 text-sm">
+      <a
+        href={businessInfo.contact.instagramUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Instagram · {businessInfo.contact.instagramHandle} ↗
+      </a>
+      <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
+        WhatsApp · {businessInfo.contact.phoneFormatted} ↗
+      </a>
+    </div>
   </div>
 </footer>

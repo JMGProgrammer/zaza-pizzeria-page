@@ -30,23 +30,20 @@ A nivel de configuración en el panel de Vercel o Netlify:
 | **Root Directory** | `./` |
 | **Build Command** | `npm run build` |
 | **Output Directory** | `dist` |
-| **Node.js Version** | `24.x` (mínimo del proyecto: 22.23.4) |
+| **Node.js Version** | `22.23.4` (definida también en `.nvmrc`) |
 
 ---
 
 ## 3. Variables de Entorno
 
-En la fase inicial de preview informativa, el sitio no requiere secretos de backend ni llaves de bases de datos. Sin embargo, se sugiere parametrizar la información de contacto para facilitar cambios rápidos sin editar plantillas:
+En la fase inicial de preview informativa, el sitio no requiere secretos de backend ni llaves de bases de datos. La única variable efectiva es la URL pública real:
 
 ```bash
-# .env.example (Propuesta)
+# .env.example
 PUBLIC_SITE_URL="https://URL-REAL-DEL-PREVIEW"
-PUBLIC_WHATSAPP_NUMBER="59891214087"
-PUBLIC_WHATSAPP_DEFAULT_MSG="Hola ZAZA! Quisiera consultar por el menú / realizar un pedido."
-PUBLIC_INSTAGRAM_URL="https://www.instagram.com/lapizzeriazaza/"
 ```
 
-> **Regla de seguridad:** En Astro, solo las variables con prefijo `PUBLIC_` son accesibles en el código del cliente.
+El teléfono, los textos de WhatsApp y el perfil de Instagram continúan centralizados en `src/data/businessInfo.ts`; no se documentan variables que el código no consume.
 
 ---
 
@@ -61,14 +58,14 @@ PUBLIC_INSTAGRAM_URL="https://www.instagram.com/lapizzeriazaza/"
 
 Antes de compartir el enlace público con clientes o promocionarlo en redes:
 
-- [ ] **Verificación de WhatsApp:** Hacer clic en todos los botones y comprobar que se abre el chat con el número `+598 91 214 087` y el texto predeterminado.
-- [ ] **Verificación de Instagram:** Comprobar que el enlace dirige al perfil real `@lapizzeriazaza` abriendo en una nueva pestaña (`target="_blank" rel="noopener noreferrer"`).
-- [ ] **Validación de Horarios y Cobertura:** Comprobar que se exhibe claramente el horario (20:00 a 01:00 hs) y cobertura en Rosario.
-- [ ] **Revisión de Precios e Información Provisional:** Asegurar que los datos no validados mantengan la advertencia correspondiente o hayan sido confirmados previamente.
+- [x] **Verificación de WhatsApp:** Los 13 enlaces generados usan `59891214087`; el destino público respondió correctamente.
+- [x] **Verificación de Instagram:** El perfil real `@lapizzeriazaza` respondió correctamente y se abre con `target="_blank" rel="noopener noreferrer"`.
+- [x] **Validación de Horarios y Cobertura:** Se exhibe el horario 20:00 a 01:00 hs y la cobertura confirmada en Rosario.
+- [x] **Revisión de Precios e Información Provisional:** La carta coincide con `docs/BUSINESS-INFO.md` y no publica promociones inexistentes.
 - [ ] **Prueba de Responsive en Celulares Reales:** Probar en al menos un dispositivo Android y un iPhone para verificar que no haya desbordamiento horizontal ni tipografías ilegibles.
-- [ ] **Lighthouse Audit:** Ejecutar una auditoría de rendimiento en Google Chrome DevTools comprobando un puntaje mínimo de 90 en Performance y SEO.
-- [ ] **Favicon y Metadatos:** Verificar que el icono de pestaña y la tarjeta de previsualización (Open Graph) en WhatsApp muestren el isotipo oficial de ZAZA.
+- [ ] **Lighthouse en hosting:** La auditoría local obtuvo 100 en Accessibility, Best Practices y SEO, 99 en Performance de escritorio y 85-87 en Performance móvil. Repetir en el CDN para validar el objetivo >= 90.
+- [x] **Favicon y metadatos:** Favicon, Open Graph, Schema.org y canonical configurable están incluidos; la URL absoluta se completa con `PUBLIC_SITE_URL`.
 
 ## Configuración efectiva
 
-`astro.config.mjs` lee `PUBLIC_SITE_URL` durante el build. Al definir una URL real se generan canonical y URLs absolutas de Open Graph. Sin ella no se inventa un dominio. Ejecutar `npm run check` y `npm run build`; publicar `dist/`. No hay proyecto de hosting enlazado todavía.
+`astro.config.mjs` lee `PUBLIC_SITE_URL` durante el build. Al definir una URL real se generan canonical y URLs absolutas de Open Graph. Sin ella no se inventa un dominio. Ejecutar `npm ci` y `npm run validate`; publicar `dist/`. No hay proyecto de hosting enlazado todavía.

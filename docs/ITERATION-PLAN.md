@@ -123,3 +123,13 @@ Lighthouse: Performance 81, Accessibility 100, Best Practices 100, SEO 100. LCP 
 Se sustituye la portada con afiche por una escena de mesa y campana con cuatro pizzas. Assets incorporados desde `~/Descargas/ZAZA-Pizzeria/Assets`. Se prioriza probar la tapa animada; la alternativa de bandeja siempre abierta queda como opción de diseño si el usuario la prefiere. No se modifica la carta ni las otras secciones. Sin JavaScript se muestra Capresse con la tapa levantada y enlace funcional de pedido.
 
 La auditoría Lighthouse anterior corresponde al hero anterior; no representa el rendimiento de esta prueba de carrusel. Validación de esta prueba: tipos, build, apertura/cierre, navegación cíclica y teclado, sincronización de pedido con producto, fallback sin JavaScript y revisión visual en móvil/escritorio.
+
+## Cierre de pre-deploy
+
+- Node fijado en 22.23.4 mediante `engines` y `.nvmrc`.
+- `npm run validate` ejecuta formato, validación estricta de Astro/TypeScript y build de producción.
+- Prettier y `prettier-plugin-astro` forman parte de las dependencias de desarrollo; el código fuente queda cubierto por `npm run format:check`.
+- Enlaces internos sin destinos ausentes. Los 13 enlaces de WhatsApp usan el número confirmado y los destinos públicos de WhatsApp e Instagram responden correctamente.
+- Fondo de carta diferido, secciones fuera del viewport con contención de render y teléfono responsive. El peso inicial observado bajó de 696 KiB a aproximadamente 401 KiB.
+- Lighthouse local del hero actual: Accessibility 100, Best Practices 100, SEO 100; Performance de escritorio 99. En móvil, LCP 2.0-2.1 s y CLS 0, con Performance variable entre 85 y 87 por TBT del entorno headless.
+- El código queda listo para conectar a hosting. El cierre definitivo de Iteración 5 requiere `PUBLIC_SITE_URL`, auditoría sobre CDN con Performance móvil >= 90, prueba en Android/iPhone y aprobación de los dueños.

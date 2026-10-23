@@ -65,6 +65,11 @@ h4,
   }
 }
 @layer components {
+  .deferred-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 900px;
+  }
+
   .eyebrow {
     font-size: 0.7rem;
     font-weight: 600;

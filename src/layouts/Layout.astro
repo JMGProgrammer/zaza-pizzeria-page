@@ -1,9 +1,9 @@
 ---
-import { getImage } from 'astro:assets';
-import socialPoster from '../../Assets/Presentation/capresse-luxury-presentation.jpeg';
-import '../styles/global.css';
-import '../styles/fonts.css';
-import { businessInfo } from '../data/businessInfo';
+import { getImage } from "astro:assets";
+import socialPoster from "../../Assets/Presentation/capresse-luxury-presentation.jpeg";
+import "../styles/global.css";
+import "../styles/fonts.css";
+import { businessInfo } from "../data/businessInfo";
 
 interface Props {
   title?: string;
@@ -11,12 +11,16 @@ interface Props {
   ogImage?: string;
 }
 
-const socialImage = await getImage({ src: socialPoster, width: 900, format: 'jpeg' });
+const socialImage = await getImage({
+  src: socialPoster,
+  width: 900,
+  format: "jpeg",
+});
 
 const {
   title = `${businessInfo.name} Pizzería Artesanal | Delivery en Rosario, Colonia`,
   description = `${businessInfo.name} en Rosario, Colonia. ${businessInfo.tagline} Pizzas clásicas y especiales de masa casera. Pedí tu delivery directo al WhatsApp.`,
-  ogImage = socialImage.src
+  ogImage = socialImage.src,
 } = Astro.props;
 
 const siteUrl = Astro.site?.href;
@@ -25,35 +29,35 @@ const socialImageUrl = siteUrl ? new URL(ogImage, siteUrl).href : ogImage;
 const schemaData = {
   "@context": "https://schema.org",
   "@type": "Restaurant",
-  "name": `${businessInfo.name} Pizzería`,
-  "description": businessInfo.tagline,
-  "servesCuisine": "Pizza artesanal",
-  "telephone": businessInfo.contact.phone,
-  "url": siteUrl,
-  "address": {
+  name: `${businessInfo.name} Pizzería`,
+  description: businessInfo.tagline,
+  servesCuisine: "Pizza artesanal",
+  telephone: businessInfo.contact.phone,
+  url: siteUrl,
+  address: {
     "@type": "PostalAddress",
-    "addressLocality": businessInfo.location.city,
-    "addressRegion": businessInfo.location.department,
-    "addressCountry": "UY"
+    addressLocality: businessInfo.location.city,
+    addressRegion: businessInfo.location.department,
+    addressCountry: "UY",
   },
-  "openingHoursSpecification": [
+  openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
+      dayOfWeek: [
         "Monday",
         "Tuesday",
         "Wednesday",
         "Thursday",
         "Friday",
         "Saturday",
-        "Sunday"
+        "Sunday",
       ],
-      "opens": businessInfo.schedule.opens,
-      "closes": businessInfo.schedule.closes
-    }
+      opens: businessInfo.schedule.opens,
+      closes: businessInfo.schedule.closes,
+    },
   ],
-  "paymentAccepted": businessInfo.delivery.paymentMethods.join(", "),
-  "priceRange": "$$"
+  paymentAccepted: businessInfo.delivery.paymentMethods.join(", "),
+  priceRange: "$$",
 };
 ---
 
@@ -65,7 +69,34 @@ const schemaData = {
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 
-    <link rel="preload" href="/fonts/cormorant-garamond-600-italic.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/cormorant-garamond-600-italic.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/playfair-display-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/plus-jakarta-sans-400-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/plus-jakarta-sans-600-normal.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <!-- Metadatos SEO Primarios -->
     <title>{title}</title>

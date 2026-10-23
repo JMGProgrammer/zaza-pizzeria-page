@@ -1,16 +1,33 @@
 ---
-import Wordmark from './Wordmark.astro';
-import { whatsappLink } from '../data/businessInfo';
+import Wordmark from "./Wordmark.astro";
+import { whatsappLink } from "../data/businessInfo";
 ---
+
 <header class="sticky top-0 z-40 border-b border-zaza-cream-300/20 bg-zaza-wine-800 text-zaza-cream-100">
   <div class="mx-auto flex max-w-6xl min-h-24 items-center justify-between px-6 pr-24 sm:pr-32 md:pr-36">
     <Wordmark />
     <nav aria-label="Navegación principal" class="hidden gap-7 text-sm md:flex">
-      <a href="#menu">Menú</a><a href="#destacadas">Especialidades</a><a href="#delivery">Delivery &amp; Pagos</a><a href="#nosotros">Nuestra Masa</a>
+      <a href="#menu">Menú</a>
+      <a href="#destacadas">Especialidades</a>
+      <a href="#delivery">Delivery &amp; Pagos</a>
+      <a href="#nosotros">Nuestra Masa</a>
     </nav>
-    <a class="button border border-zaza-cream-300/60 text-sm hover:bg-zaza-wine-700" href={whatsappLink()} target="_blank" rel="noopener noreferrer">Hacer pedido ↗</a>
+    <a
+      class="button border border-zaza-cream-300/60 text-sm hover:bg-zaza-wine-700"
+      href={whatsappLink()}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      Hacer pedido ↗
+    </a>
   </div>
-  <nav aria-label="Navegación móvil" class="flex justify-center gap-5 border-t border-zaza-cream-300/20 px-3 py-3 pr-20 text-xs md:hidden">
-    <a href="#menu">Menú</a><a href="#destacadas">Especialidades</a><a href="#delivery">Delivery &amp; Pagos</a><a href="#nosotros">Nuestra Masa</a>
+  <nav
+    aria-label="Navegación móvil"
+    class="flex justify-center gap-5 border-t border-zaza-cream-300/20 px-3 py-3 pr-20 text-xs md:hidden"
+  >
+    <a href="#menu">Menú</a>
+    <a href="#destacadas">Especialidades</a>
+    <a href="#delivery">Delivery &amp; Pagos</a>
+    <a href="#nosotros">Nuestra Masa</a>
   </nav>
 </header>

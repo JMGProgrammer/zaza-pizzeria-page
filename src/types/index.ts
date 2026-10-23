@@ -1,4 +1,5 @@
-export type ProductCategory = 'clasicas' | 'especiales' | 'acompanamientos' | 'bebidas';
+export type ProductCategory =
+  "clasicas" | "especiales" | "acompanamientos" | "bebidas";
 
 export interface MenuItem {
   id: string;
