@@ -1,4 +1,6 @@
-# ZAZA Pizzería - Web Preview
+<p align="center">
+  <img src="Assets/ZAZA-pizzeria-banner.png" alt="ZAZA Pizzería" width="100%" />
+</p>
 
 Sitio web preview e informativo para **ZAZA**, pizzería delivery artesanal ubicada en Rosario, Colonia, Uruguay.
 
