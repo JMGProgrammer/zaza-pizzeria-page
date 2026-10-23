@@ -6,6 +6,22 @@ El formato se basa en [Keep a Changelog](https://keepachangelog.com/es-ES/1.1.0/
 
 ---
 
+## [0.2.0] - 2026-10-23
+
+### Cierre de Iteración 1 (IT-1) — Inicialización de Astro & Configuración del Design System
+- **Tag Git:** `v0.2.0`
+- **Añadido:**
+  - Inicialización limpia del proyecto base con Astro 5 (`v5.4.2`) y TypeScript en modo estricto.
+  - Integración nativa de Tailwind CSS v4 con `@tailwindcss/vite` y hoja de estilos globales `src/styles/global.css`.
+  - Configuración completa de tokens de diseño ZAZA: Escala Vino/Borgoña (`#5A131A`, `#7B1B24`, `#3D0C11`), Escala Crema Cálido (`#FAF6EE`, `#FDFBF7`, `#F3EBD8`), Acento Oro Tostado (`#E5A93B`, `#C88A22`) y tipografías personalizadas.
+  - Configuración de Google Fonts: *Playfair Display* (serif retro-elegante para titulares) y *Plus Jakarta Sans* (sans-serif legible para cuerpo).
+  - Instalación de la librería de iconografía `@lucide/astro` e integración de `@astrojs/check` para validación de tipos.
+  - Creación del layout maestro `src/layouts/Layout.astro` con metadatos SEO y tipografías pre-cargadas.
+  - Creación de vista previa inicial en `src/pages/index.astro` demostrando la paleta cromática, iconos y tipografía del Design System.
+  - Estructuración de carpetas modulares según `DEVELOPMENT-RULES.md`: `src/layouts/`, `src/components/ui/`, `src/data/`, `src/types/` y `src/assets/`.
+
+---
+
 ## [0.1.0] - 2026-10-22
 
 ### Cierre de Iteración 0 (IT-0) — Documentación y Arquitectura

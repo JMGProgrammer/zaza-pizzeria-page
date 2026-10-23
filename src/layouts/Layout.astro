@@ -1,0 +1,41 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "ZAZA Pizzería Artesanal | Delivery en Rosario, Colonia",
+  description = "Pizzería artesanal ZAZA en Rosario, Colonia. Masa casera, ingredientes seleccionados y recetas clásicas y especiales. Pedí tu delivery directo por WhatsApp de 20:00 a 01:00 hs."
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Google Fonts: Playfair Display & Plus Jakarta Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Metadatos SEO Primarios -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#5a131a" />
+  </head>
+  <body class="min-h-screen bg-zaza-cream-100 text-zaza-dark antialiased selection:bg-zaza-wine-700 selection:text-zaza-cream-50">
+    <slot />
+  </body>
+</html>

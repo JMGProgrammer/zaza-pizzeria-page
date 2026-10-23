@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+@theme {
+  /* Escala Vino / Borgoña ZAZA */
+  --color-zaza-wine-900: #3d0c11;
+  --color-zaza-wine-800: #5a131a;
+  --color-zaza-wine-700: #7b1b24;
+  --color-zaza-wine-600: #9e2430;
+  --color-zaza-wine-500: #c23140;
+
+  /* Escala Crema Cálido ZAZA */
+  --color-zaza-cream-50: #fdfbf7;
+  --color-zaza-cream-100: #faf6ee;
+  --color-zaza-cream-200: #f3ebd8;
+  --color-zaza-cream-300: #e4d5b7;
+
+  /* Acentos Oro Tostado */
+  --color-zaza-gold-400: #e5a93b;
+  --color-zaza-gold-500: #c88a22;
+
+  /* Textos y Contrastes */
+  --color-zaza-dark: #1c1917;
+  --color-zaza-muted: #6b5e55;
+
+  /* Tipografías */
+  --font-serif: "Playfair Display", Georgia, Cambria, "Times New Roman", Times, serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--color-zaza-cream-100);
+  color: var(--color-zaza-dark);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, .font-display {
+  font-family: var(--font-serif);
+}

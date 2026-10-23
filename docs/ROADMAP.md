@@ -23,14 +23,14 @@ Este documento detalla el estado actual de avance del proyecto, los hitos inmedi
 - [x] Redacción de documentación técnica: Arquitectura, Alcance, Sistema de Diseño, Contenido, SEO, Despliegue y Hoja de Ruta.
 - [x] Creación de `README.md` y `AGENTS.md` para estandarizar el desarrollo.
 
-### Hito 2: Inicialización del Proyecto Astro y Base UI (EN PROCESO ⏳)
-- [ ] Inicialización limpia de Astro con soporte de TypeScript.
-- [ ] Configuración e integración de Tailwind CSS con los tokens de color Vino/Crema (`tailwind.config.mjs`).
-- [ ] Incorporación del set de iconos Lucide (`lucide-astro`).
-- [ ] Estructuración de datos estáticos del menú en `src/data/menu.ts`.
-- [ ] Maquetación del layout base (`Layout.astro`) con metadatos SEO y tipografías.
+### Hito 2: Inicialización del Proyecto Astro y Base UI (COMPLETADO ✅)
+- [x] Inicialización limpia de Astro 5+ con soporte de TypeScript estricto.
+- [x] Configuración e integración de Tailwind CSS v4 con los tokens de color Vino/Crema (`src/styles/global.css`).
+- [x] Incorporación del set de iconos Lucide (`@lucide/astro`).
+- [x] Configuración de tipografías Google Fonts (Playfair Display para títulos y Plus Jakarta Sans para texto).
+- [x] Maquetación del layout base (`src/layouts/Layout.astro`) con metadatos SEO.
 
-### Hito 3: Desarrollo de Componentes y Landing Page (PRÓXIMO 🎯)
+### Hito 3: Desarrollo de Componentes y Landing Page (SIGUIENTE 🎯)
 - [ ] Componente `Navbar.astro` con logo, navegación ancla y botón rápido de WhatsApp.
 - [ ] Componente `Hero.astro` con propuesta de valor, estética vintage de impacto y llamados a la acción.
 - [ ] Componente `MenuSection.astro` y `PizzaCard.astro` con visualización categorizada (Clásicas, Especiales, Acompañamientos, Bebidas).
