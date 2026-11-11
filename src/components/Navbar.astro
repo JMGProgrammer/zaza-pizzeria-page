@@ -1,30 +1,24 @@
 ---
-import { Image } from "astro:assets";
-import headerBackground from "../../Assets/Backgrounds/header-bg.png";
-import Wordmark from "./Wordmark.astro";
+import headerBg from "../../Assets/header-reworked-zaza.png";
 import { whatsappLink } from "../data/businessInfo";
 ---
 
-<header class="header-canopy sticky top-0 z-40 isolate overflow-hidden bg-zaza-wine-800 text-zaza-cream-100">
-  <Image
-    src={headerBackground}
-    alt=""
-    widths={[700, 960, 1280, 1920]}
-    sizes="(max-width: 767px) 700px, max(100vw, 960px)"
-    class="header-canopy-image"
+<!-- El asset ya trae la marca centrada y el festón transparente. El hero pasa por
+     detrás del toldo en desktop para que el borde conserve sus huecos reales. -->
+<header class="header sticky top-0 z-40 isolate text-zaza-cream-100">
+  <div
+    class="toldo-fondo"
+    style={`--toldo-img: url(${headerBg.src});`}
     aria-hidden="true"
-    loading="eager"
-  />
-  <div class="relative z-10 mx-auto flex min-h-24 max-w-6xl items-center justify-between px-6 pr-24 sm:pr-32 md:pr-36">
-    <Wordmark />
-    <nav aria-label="Navegación principal" class="hidden gap-7 text-sm md:flex">
-      <a href="#menu">Menú</a>
-      <a href="#destacadas">Especialidades</a>
-      <a href="#delivery">Delivery &amp; Pagos</a>
-      <a href="#nosotros">Nuestra Masa</a>
-    </nav>
+  ></div>
+  <a
+    class="brand-link"
+    href="#inicio"
+    aria-label="ZAZA Pizzería · Volver al inicio"
+  ></a>
+  <div class="header-actions mx-auto max-w-6xl px-6">
     <a
-      class="button border border-zaza-cream-300/60 text-sm hover:bg-zaza-wine-700"
+      class="button order-link hidden border border-zaza-cream-300/60 text-sm hover:bg-zaza-wine-700 lg:inline-flex"
       href={whatsappLink()}
       target="_blank"
       rel="noopener noreferrer"
@@ -32,52 +26,60 @@ import { whatsappLink } from "../data/businessInfo";
       Hacer pedido ↗
     </a>
   </div>
-  <nav
-    aria-label="Navegación móvil"
-    class="relative z-10 flex justify-center gap-5 border-t border-zaza-cream-300/20 px-3 py-3 pr-20 text-xs md:hidden"
-  >
-    <a href="#menu">Menú</a>
-    <a href="#destacadas">Especialidades</a>
-    <a href="#delivery">Delivery &amp; Pagos</a>
-    <a href="#nosotros">Nuestra Masa</a>
-  </nav>
 </header>
 
 <style>
-  .header-canopy {
-    box-shadow: 0 8px 22px rgb(49 7 12 / 0.38);
+  .header {
+    height: 150px;
   }
-
-  .header-canopy-image {
-    position: absolute;
-    top: calc(100% - 9.115rem);
-    left: 50%;
-    z-index: 0;
-    width: 700px;
-    max-width: none;
-    height: auto;
-    transform: translateX(-50%);
-    pointer-events: none;
-  }
-
-  @media (min-width: 768px) {
-    .header-canopy-image {
-      top: calc(100% - max(20.833vw, 12.5rem));
-      width: max(100%, 960px);
-    }
-  }
-
-  .header-canopy::after {
-    content: "";
+  .toldo-fondo {
     position: absolute;
     inset: 0;
-    z-index: 1;
-    background: linear-gradient(
-      90deg,
-      rgb(50 7 12 / 0.18),
-      transparent 35%,
-      rgb(50 7 12 / 0.16)
-    );
     pointer-events: none;
+    background-image: var(--toldo-img);
+    background-repeat: no-repeat;
+    /* Móvil: mantener la marca centrada y legible, sin repetirla ni estirar los pliegues. */
+    background-size: auto 150px;
+    background-position: center bottom;
+  }
+  .brand-link {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 50%;
+    width: 140px;
+    height: 75px;
+    transform: translateX(-50%);
+  }
+  .brand-link:focus-visible {
+    outline: 3px solid var(--color-zaza-cream-100);
+    outline-offset: -4px;
+  }
+  .header-actions {
+    position: absolute;
+    inset: auto 0 27px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .order-link {
+    position: absolute;
+    right: 8rem;
+  }
+  @media (min-width: 768px) {
+    .header {
+      height: min(200px, 20.57vw);
+    }
+    .toldo-fondo {
+      background-size: 100% 100%;
+    }
+    .brand-link {
+      width: clamp(150px, 24vw, 270px);
+      height: 50%;
+    }
+    .header-actions {
+      bottom: 24%;
+    }
   }
 </style>

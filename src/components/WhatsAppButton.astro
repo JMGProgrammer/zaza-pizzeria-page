@@ -79,7 +79,14 @@ import { whatsappLink } from "../data/businessInfo";
   @media (min-width: 768px) {
     .hanging-phone-link {
       right: max(1rem, calc((100vw - 72rem) / 2 - 4.25rem));
-      top: 5.5rem;
+      /* Por DEBAJO del header (z-40): el tramo inicial del cordón queda tapado por el
+         festón y emerge de su borde inferior, colgando del toldo y no del aire */
+      z-index: 30;
+      /* Alto del header (min(200px, 20.57vw)) + 10.5px de padding transparente del PNG
+         sobre el cordón (57px nativos al ancho de 136px) + 21px de tuck dentro del
+         festón (9px extra pedido a mano: el cordón muerde más el festón); el cuerpo
+         del teléfono arranca 81px más abajo, sin tocar el header */
+      top: calc(min(12.5rem, 20.57vw) - 32px);
     }
     .phone-img {
       width: 136px;

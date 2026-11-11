@@ -1,0 +1,193 @@
+---
+import { Image } from "astro:assets";
+import leftCurtain from "../../Assets/Loading screen/telon-izquierdo.png";
+import rightCurtain from "../../Assets/Loading screen/telon-derecho.png";
+import pizza from "../../Assets/Loading screen/circular-pizza.png";
+---
+
+<!-- Sin JS (o con movimiento reducido) esta capa permanece oculta. -->
+<script is:inline>
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    document.documentElement.classList.add("js-loading-screen");
+    // Fallback si el script del componente no llegara a ejecutarse.
+    window.setTimeout(() => {
+      document.documentElement.classList.remove("js-loading-screen");
+      document.querySelector("[data-loading-screen]")?.remove();
+    }, 6000);
+  }
+</script>
+
+<div
+  class="loading-screen"
+  data-loading-screen
+  role="status"
+  aria-label="Cargando ZAZA"
+>
+  <div class="loading-backdrop" aria-hidden="true"></div>
+  <Image
+    src={leftCurtain}
+    alt=""
+    widths={[960, 1920, 2560, 3840]}
+    sizes="100vw"
+    quality={80}
+    class="loading-curtain loading-curtain-left"
+    loading="eager"
+    decoding="sync"
+  />
+  <Image
+    src={rightCurtain}
+    alt=""
+    widths={[960, 1920, 2560, 3840]}
+    sizes="100vw"
+    quality={80}
+    class="loading-curtain loading-curtain-right"
+    loading="eager"
+    decoding="sync"
+  />
+  <div class="loading-pizza" aria-hidden="true">
+    <Image
+      src={pizza}
+      alt=""
+      width={240}
+      class="loading-pizza-image"
+      loading="eager"
+      decoding="sync"
+    />
+  </div>
+</div>
+
+<style>
+  .loading-screen {
+    display: none;
+  }
+  :global(html.js-loading-screen) {
+    overflow: hidden;
+  }
+  :global(html.js-loading-screen) .loading-screen {
+    display: block;
+    position: fixed;
+    inset: 0;
+    height: 100dvh;
+    z-index: 60;
+    overflow: hidden;
+    isolation: isolate;
+  }
+  .loading-backdrop {
+    position: absolute;
+    inset: 0;
+    background: var(--color-zaza-wine-900);
+    transition: opacity 180ms ease;
+  }
+  .loading-curtain {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1100ms cubic-bezier(0.7, 0, 0.2, 1) 130ms;
+  }
+  .loading-pizza {
+    position: absolute;
+    z-index: 2;
+    top: 50%;
+    left: 50%;
+    width: clamp(120px, 18vw, 220px);
+    transform: translate(-50%, -50%);
+    transition:
+      transform 500ms cubic-bezier(0.55, 0, 0.85, 0.35),
+      opacity 130ms ease 350ms;
+  }
+  .loading-pizza-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    animation: pizza-spin 1500ms linear infinite;
+  }
+  .loading-screen.is-opening .loading-backdrop {
+    opacity: 0;
+  }
+  .loading-screen.is-opening .loading-curtain-left {
+    transform: translateX(-100%);
+  }
+  .loading-screen.is-opening .loading-curtain-right {
+    transform: translateX(100%);
+  }
+  .loading-screen.is-opening .loading-pizza {
+    transform: translate(-50%, calc(-50% - 115dvh));
+    opacity: 0;
+  }
+  @keyframes pizza-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :global(html.js-loading-screen) {
+      overflow: auto;
+    }
+    .loading-curtain,
+    .loading-pizza,
+    .loading-backdrop {
+      transition: none;
+    }
+    .loading-pizza-image {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  const screen = document.querySelector<HTMLElement>("[data-loading-screen]");
+  if (screen) {
+    const root = document.documentElement;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let opened = false;
+    let finished = false;
+    let openingTimer: number;
+    let fallbackTimer: number;
+
+    const finish = () => {
+      if (finished) return;
+      finished = true;
+      window.clearTimeout(openingTimer);
+      window.clearTimeout(fallbackTimer);
+      root.classList.remove("js-loading-screen");
+      screen.remove();
+    };
+
+    const open = () => {
+      if (opened || finished) return;
+      opened = true;
+      if (reduce.matches) {
+        finish();
+        return;
+      }
+      screen.classList.add("is-opening");
+      fallbackTimer = window.setTimeout(finish, 1600);
+    };
+
+    if (reduce.matches || !root.classList.contains("js-loading-screen")) {
+      finish();
+    } else {
+      screen
+        .querySelector(".loading-curtain-right")
+        ?.addEventListener("transitionend", finish, { once: true });
+
+      const images = [
+        ...screen.querySelectorAll<HTMLImageElement>("img"),
+        document.querySelector<HTMLImageElement>(".storefront-photo"),
+      ].filter((image): image is HTMLImageElement => image !== null);
+      const ready = Promise.allSettled(images.map((image) => image.decode()));
+      const timeout = new Promise<void>((resolve) =>
+        window.setTimeout(resolve, 2500),
+      );
+      Promise.race([ready, timeout]).then(() => {
+        openingTimer = window.setTimeout(open, 300);
+      });
+      reduce.addEventListener("change", () => {
+        if (reduce.matches) finish();
+      });
+    }
+  }
+</script>

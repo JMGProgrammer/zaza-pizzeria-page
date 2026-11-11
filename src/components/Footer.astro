@@ -3,24 +3,78 @@ import Wordmark from "./Wordmark.astro";
 import { businessInfo, whatsappLink } from "../data/businessInfo";
 ---
 
-<footer id="contacto" class="bg-zaza-wine-800 px-6 py-10 text-zaza-cream-100">
-  <div class="mx-auto flex max-w-6xl flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
-    <Wordmark />
-    <p class="text-sm leading-7">
-      Rosario, Colonia, Uruguay
-      <br />© {new Date().getFullYear()} ZAZA Pizzería
-    </p>
-    <div class="flex flex-col gap-4 text-sm">
-      <a
-        href={businessInfo.contact.instagramUrl}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Instagram · {businessInfo.contact.instagramHandle} ↗
-      </a>
-      <a href={whatsappLink()} target="_blank" rel="noopener noreferrer">
-        WhatsApp · {businessInfo.contact.phoneFormatted} ↗
-      </a>
+<footer id="contacto" class="bg-zaza-wine-800 px-6 text-zaza-cream-100">
+  <div class="mx-auto max-w-6xl">
+    <div class="grid gap-10 py-12 sm:grid-cols-[1fr_auto] sm:items-start lg:grid-cols-[1.4fr_1fr_1fr] lg:gap-16 lg:py-14">
+      <div class="footer-brand">
+        <Wordmark />
+        <p class="mt-3 text-sm text-zaza-cream-200">
+          Masa casera. Buenos ingredientes.
+        </p>
+      </div>
+      <div>
+        <h2 class="footer-label">Nos encontrás en</h2>
+        <p class="mt-4 text-sm leading-6">Rosario, Colonia, Uruguay</p>
+        <p class="mt-1 text-sm leading-6 text-zaza-cream-200">
+          Pedidos solo por delivery
+        </p>
+      </div>
+      <div class="sm:col-span-2 lg:col-span-1">
+        <h2 class="footer-label">Hablemos</h2>
+        <div class="mt-4 flex flex-col items-start gap-3 text-sm">
+          <a
+            class="footer-link"
+            href={businessInfo.contact.instagramUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Instagram · {businessInfo.contact.instagramHandle} ↗
+          </a>
+          <a
+            class="footer-link"
+            href={whatsappLink()}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            WhatsApp · {businessInfo.contact.phoneFormatted} ↗
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-zaza-cream-300/30 py-5 text-xs text-zaza-cream-200">
+      © {new Date().getFullYear()} ZAZA Pizzería
     </div>
   </div>
 </footer>
+
+<style>
+  .footer-brand :global(.wordmark) {
+    align-items: flex-start;
+    align-self: auto;
+    margin: 0;
+    padding: 0;
+  }
+  .footer-brand :global(.wordmark-name) {
+    font-size: 3.25rem;
+  }
+  .footer-brand :global(.wordmark-caption) {
+    margin-left: 0.25rem;
+  }
+  .footer-label {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+  .footer-link {
+    line-height: 1.6;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: 5px;
+    transition: text-decoration-color 150ms;
+  }
+  .footer-link:hover,
+  .footer-link:focus-visible {
+    text-decoration-color: currentColor;
+  }
+</style>

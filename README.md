@@ -64,7 +64,7 @@ zaza-pizzeria-page/
 
 Portada rediseñada y catálogo completo implementado. Los originales de `Assets/` se importan mediante `astro:assets` y se generan variantes WebP.
 
-- `src/components/`: Navbar, Wordmark, Hero, MenuSection, PizzaCard, DeliveryInfo, ServiceHours, WhatsAppButton y Footer.
+- `src/components/`: LoadingScreen, Navbar, Wordmark, Hero, MenuSection, TVSection, PizzaCard, DeliveryInfo, ServiceHours, WhatsAppButton y Footer; `FeaturedDishes` y `PizzaShowcase` quedan conservados pero inactivos.
 - `src/data/`: carta tipada y datos de negocio; enlaces WhatsApp con mensaje.
 - `src/pages/index.astro`: composición de la landing.
 - `src/layouts/Layout.astro`: metadatos y estructura HTML.
@@ -79,6 +79,7 @@ Ver [plan de iteraciones](docs/ITERATION-PLAN.md) para pendientes de validación
 ## 🚀 Requisitos e Instalación
 
 ### Prerrequisitos
+
 - **Node.js:** Versión `>= 22.23.4`
 - **Gestor de paquetes:** `npm` (o `pnpm` / `bun`)
 - **Git**
@@ -140,6 +141,30 @@ Toda la documentación detallada se encuentra centralizada en la carpeta [`docs/
 
 Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
 
-## Hero interactivo sobre mesa
+## Hero interactivo sobre mesa (archivado)
 
-`src/components/Hero.astro` reemplaza la portada anterior por la escena `Assets/hero-para-pngs.png`, la bandeja transparente de `Assets/Pngs/bandejas/` y cuatro pizzas de `Assets/Pngs/pizzas/`. La tapa y el plato se separan visualmente con CSS sobre el mismo PNG, sin alterar originales. Carrusel manual con botones, teclado y apertura por hover o toque; sin reproducción automática.
+El componente descrito a continuación ahora se guarda como `src/components/PizzaShowcase.astro` y no se monta en la portada.
+
+`src/components/Hero.astro` reemplaza la portada anterior por la escena `Assets/hero-para-pngs.png`, la bandeja transparente de `Assets/Pngs/bandejas/` y cuatro pizzas de `Assets/Pngs/pizzas/`. La tapa y el plato se separan visualmente con CSS sobre el mismo PNG, sin alterar originales. Carrusel manual con botones, teclado y apertura por hover o toque; sin reproducción automática. La pizza nunca se ve desaparecer: al cerrar la tapa, la capa se oculta recién cuando el domo aterrice (700ms, cubierta físicamente), y el cambio con la tapa abierta cierra primero, intercambia detrás del domo y vuelve a abrir revelando la pizza nueva (el ocultado diferido se desactiva con movimiento reducido).
+
+## Toldo festoneado en la barra de navegación (implementación anterior)
+
+La imagen original `Assets/Backgrounds/header-bg.png` (1920×1072, tela superior + festón en la porción con contenido) permanece intacta como material de diseño. El fondo vivo de la navbar usa el derivado `Assets/Backgrounds/header-toldo.png` (recorte del bloque con contenido, 1920×395) estirado a llenar la barra exacta (`background-size: 100% 100%`, una sola imagen, sin mosaico: el pliegado no es periódico y el `repeat-x` generaba costuras; `cover` anclado abajo recortaba los pliegues y dejaba solo el festón). En ≤973px la barra es proporcional (20.57vw) y el estirado es nulo; por encima se estira elásticamente. Los huecos del festón son transparencias reales (sin respaldo ni color sólido en desktop): el hero sube con `margin-top: calc(-1 * min(200px, 20.57vw))` en ≥768px para pasar por detrás de la barra sticky, de modo que el telón se ve continuo a través de los agujeros y el contenido scrolleado pasa genuinamente detrás. El título del hero se ancla bajo la barra con la misma fórmula (`padding-top` en flujo 768–849px; `top` absoluto ≥850px). La barra va sin sombra de bloque (una sombra rectangular pintaría el borde duro bajo el festón que "clava" la transparencia) y la marca ZAZA vive estampada sobre la tela en ≥768px (más grande y arriba a la izquierda, con sangrado de tinta y sombra de contacto sobre el paño). El teléfono flotante de WhatsApp (`WhatsAppButton.astro`) cuelga del borde inferior del toldo con `z-index: 30` (por debajo del header z-40) y compensa los 57px nativos de padding sobre su cordón (`top: calc(min(12.5rem, 20.57vw) - 32px)`): el tramo inicial del cordón queda tapado por el festón y emerge de su borde.
+
+## Portada con fachada y pizarrón
+
+`Hero.astro` muestra la fachada representativa (`Assets/hero-section-reworked.jpeg`) y el pizarrón enlaza a `#menu`, donde hay una ruta Inicio / Carta. Las variantes normales y iluminadas del pizarrón se conservan en `Assets/Pizarron hero/`; las copias `-recortado.png` eliminan solo el margen transparente para la composición. La fachada es ilustrativa: el horario visible en la imagen no corresponde al confirmado en [BUSINESS-INFO.md](docs/BUSINESS-INFO.md); la web comunica 20:00 a 01:00 y solo delivery. La escena anterior de pizzas y campana permanece íntegra en `src/components/PizzaShowcase.astro`, sin importarse en la página por ahora. Los platillos destacados están separados en `src/components/FeaturedDishes.astro` y tampoco se montan; el menú mantiene la carta oficial.
+
+## Header vigente
+
+`Navbar.astro` utiliza `Assets/header-reworked-zaza.png` (3840×790): el logotipo ya está impreso en el toldo, por lo que no se superpone `Wordmark`. Una zona enlazada accesible permite volver al inicio haciendo clic sobre la marca. No hay enlaces de sección en el header; el botón «Hacer pedido» conserva su posición en escritorio y el teléfono colgante da acceso a pedidos en móvil. El festón mantiene transparencia real y el hero pasa por detrás en escritorio y móvil.
+
+`Layout.astro` desactiva la restauración automática de scroll solamente durante una recarga: la página vuelve al comienzo antes de abrir los telones. Los enlaces ancla siguen funcionando durante la navegación normal.
+
+## TV Section
+
+`src/components/TVSection.astro` ocupa el lugar del antiguo bloque «Nuestra masa» entre la carta y el delivery. Superpone `Assets/TV Section/tv/TV.png` sobre `tv-section-base.jpeg`, alineando el televisor con la mesa; en móvil se muestra el sector izquierdo de la sala para mantener la TV visible. Al pasar el mouse, cuatro frames de `Assets/TV Section/tv/tv-estatica-*.png` reproducen estática en bucle; en pantallas táctiles un toque enciende y otro apaga. Movimiento reducido muestra un frame fijo. La sección conserva el ancla `#tv`. La imagen de referencia `Assets/Presentation/tv-70s-all-section.jpeg` no se publica: incluye una promoción no confirmada.
+
+## Apertura de telones
+
+`src/components/LoadingScreen.astro` utiliza los dos lienzos transparentes de `Assets/Loading screen/` como mitades acopladas a pantalla completa. La pizza central gira mientras cargan los recursos de portada, sube rápidamente y los telones se abren hacia los lados. La capa se retira al terminar, con tiempo máximo de seguridad; sin JavaScript o con movimiento reducido no bloquea el sitio. Los PNG originales se optimizan con `astro:assets`.

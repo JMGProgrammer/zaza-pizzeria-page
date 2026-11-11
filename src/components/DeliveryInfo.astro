@@ -1,42 +1,8 @@
 ---
 import ServiceHours from "./ServiceHours.astro";
-import { Image } from "astro:assets";
-import tray from "../../Assets/Presentation/bandeja.jpeg";
 import { businessInfo, whatsappLink } from "../data/businessInfo";
 ---
 
-<section
-  id="nosotros"
-  class="deferred-section bg-zaza-wine-900 text-zaza-cream-100"
->
-  <div class="mx-auto grid max-w-6xl md:grid-cols-2">
-    <Image
-      src={tray}
-      alt="Composición de ZAZA: una bandeja de servicio frente a un telón borgoña"
-      widths={[480, 760]}
-      sizes="(min-width: 768px) 50vw, 100vw"
-      class="max-h-[600px] w-full object-cover"
-      loading="lazy"
-    />
-    <div class="self-center px-6 py-14 md:px-14">
-      <p class="eyebrow text-zaza-cream-300">Nuestra masa, nuestra esencia</p>
-      <h2 class="mt-5 text-4xl leading-tight md:text-5xl">
-        Buenos ingredientes.
-        <br />
-        Alma casera.
-      </h2>
-      <p class="mt-6 leading-7 text-zaza-cream-200">
-        {businessInfo.proposition} Hecho con pasión, para disfrutar en casa.
-      </p>
-      <a
-        href="#menu"
-        class="mt-8 inline-block py-3 underline underline-offset-8"
-      >
-        Encontrá tu próxima pizza ↗
-      </a>
-    </div>
-  </div>
-</section>
 <section
   id="delivery"
   class="deferred-section bg-zaza-cream-100 px-6 py-16 md:py-24"

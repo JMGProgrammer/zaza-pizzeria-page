@@ -134,6 +134,29 @@ h4,
     letter-spacing: 0.28em;
     margin-top: 0.3rem;
   }
+  /* Barra con toldo en desktop: la marca vive ARRIBA en la tela del toldo, más grande
+     y con tratamiento de tinta estampada (translucidez leve, sangrado de impresión y
+     sombra de contacto sobre el paño). En móvil se mantiene centrada y compacta. */
+  @media (min-width: 768px) {
+    .wordmark {
+      align-self: flex-start;
+      margin-top: 0.75rem;
+      padding: 0.25rem 0.25rem 0.75rem;
+    }
+    .wordmark-name {
+      font-size: 4.25rem;
+      color: rgba(250, 246, 238, 0.96);
+      text-shadow:
+        0 0 2px currentColor,
+        0 1px 3px rgb(20 4 7 / 0.35),
+        0 8px 18px rgb(20 4 7 / 0.14);
+    }
+    .wordmark-caption {
+      font-size: 0.65rem;
+      color: rgba(250, 246, 238, 0.86);
+      text-shadow: 0 1px 2px rgb(20 4 7 / 0.3);
+    }
+  }
   .floating-contact {
     position: fixed;
     right: 1rem;
@@ -141,9 +164,6 @@ h4,
     z-index: 30;
     box-shadow: 0 4px 20px #3d0c1133;
   }
-}
-body {
-  padding-bottom: 5rem;
 }
 html {
   scroll-padding-top: 10rem;

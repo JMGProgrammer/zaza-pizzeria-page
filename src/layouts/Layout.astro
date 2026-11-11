@@ -66,6 +66,14 @@ const schemaData = {
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script is:inline>
+      if (performance.getEntriesByType("navigation")[0]?.type === "reload") {
+        history.scrollRestoration = "manual";
+        window.addEventListener("pageshow", () => {
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        });
+      }
+    </script>
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
 

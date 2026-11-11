@@ -1,0 +1,218 @@
+---
+import { Image } from "astro:assets";
+import room from "../../Assets/TV Section/tv-section-base.jpeg";
+import television from "../../Assets/TV Section/tv/TV.png";
+import staticOne from "../../Assets/TV Section/tv/tv-estatica-1.png";
+import staticTwo from "../../Assets/TV Section/tv/tv-estatica-2.png";
+import staticThree from "../../Assets/TV Section/tv/tv-estatica-3.png";
+import staticFour from "../../Assets/TV Section/tv/tv-estatica-4.png";
+
+const staticFrames = [staticOne, staticTwo, staticThree, staticFour];
+---
+
+<section
+  id="tv"
+  class="tv-section deferred-section"
+  aria-label="La sala de ZAZA"
+>
+  <div class="tv-scene">
+    <Image
+      src={room}
+      alt=""
+      widths={[850, 1280, 1920, 2752]}
+      sizes="(max-width: 767px) 850px, 100vw"
+      quality={82}
+      class="tv-room"
+      loading="lazy"
+    />
+    <div class="tv-set" data-tv-set>
+      <Image
+        src={television}
+        alt=""
+        widths={[520, 800, 1100, 1500]}
+        sizes="(max-width: 767px) 420px, 49vw"
+        class="tv-image"
+        loading="lazy"
+      />
+      {staticFrames.map((frame) => (
+        <Image
+          src={frame}
+          alt=""
+          widths={[520, 800, 1100, 1500]}
+          sizes="(max-width: 767px) 420px, 49vw"
+          quality={75}
+          class="tv-image tv-frame"
+          data-tv-frame
+          hidden
+          loading="lazy"
+        />
+      ))}
+      <button
+        type="button"
+        class="tv-switch"
+        data-tv-switch
+        aria-label="Encender la TV"
+        aria-pressed="false"
+      ></button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .tv-section {
+    overflow: hidden;
+    background: var(--color-zaza-wine-900);
+  }
+  .tv-scene {
+    position: relative;
+    width: max(100%, 850px);
+    aspect-ratio: 2752 / 1536;
+  }
+  .tv-room {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .tv-scene::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 76%;
+    left: 4%;
+    width: 38%;
+    height: 7%;
+    border-radius: 50%;
+    pointer-events: none;
+    background: radial-gradient(
+      ellipse at center,
+      rgba(20, 8, 5, 0.76) 0%,
+      rgba(20, 8, 5, 0.46) 44%,
+      transparent 78%
+    );
+  }
+  .tv-set {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: -3.5%;
+    width: 49%;
+    aspect-ratio: 1;
+    filter: drop-shadow(0 12px 18px rgba(28, 12, 9, 0.35));
+    pointer-events: none;
+  }
+  .tv-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  .tv-frame {
+    position: absolute;
+    inset: 0;
+  }
+  .tv-frame[hidden] {
+    display: none;
+  }
+  .tv-switch {
+    position: absolute;
+    top: 43%;
+    left: 16%;
+    width: 73%;
+    height: 46%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    pointer-events: auto;
+  }
+  .tv-switch:focus-visible {
+    outline: 3px solid var(--color-zaza-cream-100);
+    outline-offset: 4px;
+  }
+  @media (min-width: 768px) {
+    .tv-scene {
+      width: 100%;
+    }
+    .tv-set {
+      /* Dejar los casetes por delante a la izquierda; la TV puede rozar el tarro. */
+      top: 3.5%;
+      left: 2%;
+    }
+    .tv-scene::after {
+      top: 78%;
+      left: 9%;
+    }
+  }
+</style>
+
+<script>
+  const tv = document.querySelector<HTMLElement>("[data-tv-set]");
+  if (tv) {
+    const switchButton =
+      tv.querySelector<HTMLButtonElement>("[data-tv-switch]")!;
+    const frames = [
+      ...tv.querySelectorAll<HTMLImageElement>("[data-tv-frame]"),
+    ];
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let switchedOn = false;
+    let hovering = false;
+    let lastPointerType = "";
+    let frameIndex = 0;
+    let timer: number | undefined;
+
+    const showFrame = () => {
+      frames.forEach((frame, index) => {
+        frame.hidden = index !== frameIndex;
+      });
+    };
+
+    const update = () => {
+      const active = switchedOn || hovering;
+      window.clearInterval(timer);
+      timer = undefined;
+      frames.forEach((frame) => (frame.hidden = true));
+      switchButton.setAttribute("aria-pressed", String(active));
+      switchButton.setAttribute(
+        "aria-label",
+        active ? "Apagar la TV" : "Encender la TV",
+      );
+      if (!active) return;
+
+      frameIndex = 0;
+      showFrame();
+      if (!reducedMotion.matches) {
+        timer = window.setInterval(() => {
+          frameIndex = (frameIndex + 1) % frames.length;
+          showFrame();
+        }, 130);
+      }
+    };
+
+    switchButton.addEventListener("pointerdown", (event) => {
+      lastPointerType = event.pointerType;
+    });
+    switchButton.addEventListener("pointerenter", (event) => {
+      if (event.pointerType === "mouse") {
+        hovering = true;
+        update();
+      }
+    });
+    switchButton.addEventListener("pointerleave", (event) => {
+      if (event.pointerType === "mouse") {
+        hovering = false;
+        update();
+      }
+    });
+    switchButton.addEventListener("click", (event) => {
+      // Con mouse basta pasar por encima; toque y teclado funcionan como interruptor.
+      if (lastPointerType === "mouse" && event.detail !== 0) return;
+      switchedOn = !switchedOn;
+      update();
+      lastPointerType = "";
+    });
+    reducedMotion.addEventListener("change", update);
+    window.addEventListener("pagehide", () => window.clearInterval(timer), {
+      once: true,
+    });
+  }
+</script>
